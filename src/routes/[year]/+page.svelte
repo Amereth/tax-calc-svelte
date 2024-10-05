@@ -29,7 +29,15 @@
 	{#each MONTHS as month, index}
 		<Month
 			month={index}
-			payments={data.payments.filter((payment) => +payment.date.split('-')[1] === index + 1)}
+			payments={data.payments.filter((payment) => {
+				const [paymentYear, paymentMonth] = payment.date.split('-').map(Number)
+
+				if (paymentYear !== +year) return false
+
+				if (paymentMonth !== index + 1) return false
+
+				return true
+			})}
 		/>
 	{/each}
 </main>

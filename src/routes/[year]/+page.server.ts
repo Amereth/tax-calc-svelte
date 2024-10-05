@@ -5,8 +5,8 @@ import { eq } from 'drizzle-orm'
 import type { PageServerLoad } from './$types'
 import type { Actions } from './$types'
 
-export const load: PageServerLoad = async ({ params }) => {
-	const payments = await getPayments(`${params.year}-01-01`, `${params.year}-12-31`)
+export const load: PageServerLoad = async () => {
+	const payments = await getPayments()
 
 	return {
 		payments,
