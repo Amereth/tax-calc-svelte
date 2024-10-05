@@ -19,6 +19,14 @@
 	)
 
 	let editedPayment: Payment['id'] | undefined = $state(undefined)
+
+	const formatter = (currency: string) =>
+		new Intl.NumberFormat('uk-UA', {
+			style: 'currency',
+			currency,
+			currencyDisplay: 'narrowSymbol',
+			maximumFractionDigits: 0,
+		})
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
@@ -27,15 +35,15 @@
 		<div>{MONTHS[month]}</div>
 		<div class="flex gap-8">
 			<span>
-				{total} &#8372;
+				{formatter('UAH').format(total)}
 			</span>
 			<span>/</span>
 			<span>
-				{totalOriginal.EUR} &#8364;
+				{formatter('EUR').format(totalOriginal.EUR)}
 			</span>
 			<span>-</span>
 			<span>
-				{totalOriginal.USD} $
+				{formatter('USD').format(totalOriginal.USD)}
 			</span>
 		</div>
 	</div>
