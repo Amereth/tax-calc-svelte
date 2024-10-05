@@ -17,6 +17,8 @@
 			{ EUR: 0, USD: 0 },
 		),
 	)
+
+	let editedPayment: Payment['id'] | undefined = $state(undefined)
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
@@ -43,7 +45,7 @@
 				<div class="flex items-center gap-2">
 					<div class="text-xl">{payment.sum}</div>
 					<button type="button" class="btn btn-outline btn-xs ml-4">
-						<PenIcon size="16" />
+						<PenIcon size="16" onclick={() => (editedPayment = payment.id)} />
 					</button>
 					<button type="button" class="btn btn-outline btn-xs">
 						<XIcon size="16" />
@@ -52,24 +54,36 @@
 			{/each}
 		</div>
 		<form class="flex flex-1 flex-col gap-2" method="post">
+			<input name="id" type="hidden" value={editedPayment} />
 			<input
 				name="sum"
 				type="text"
 				class="input input-sm input-bordered input-primary block w-full"
 				required
+				value={editedPayment ? payments.find((payment) => payment.id === editedPayment)?.sum : ''}
 			/>
 			<input
 				name="date"
 				type="date"
 				class="input input-sm input-bordered input-primary block w-full"
 				required
+				value={editedPayment ? payments.find((payment) => payment.id === editedPayment)?.date : ''}
 			/>
 			<input
 				name="originalSum"
 				type="text"
 				class="input input-sm input-bordered input-primary block w-full"
+				value={editedPayment
+					? payments.find((payment) => payment.id === editedPayment)?.originalSum
+					: ''}
 			/>
-			<select name="originalCurrency" class="select select-bordered select-sm">
+			<select
+				name="originalCurrency"
+				class="select select-bordered select-sm"
+				value={editedPayment
+					? payments.find((payment) => payment.id === editedPayment)?.originalCurrency
+					: ''}
+			>
 				<option value="EUR">EUR</option>
 				<option value="USD">USD</option>
 			</select>
@@ -77,7 +91,11 @@
 				<button type="submit" class="btn btn-outline btn-sm ml-auto">
 					<CheckIcon size="16" />
 				</button>
-				<button type="reset" class="btn btn-outline btn-sm">
+				<button
+					type="reset"
+					class="btn btn-outline btn-sm"
+					onclick={() => (editedPayment = undefined)}
+				>
 					<XIcon size="16" />
 				</button>
 			</div>
