@@ -17,10 +17,6 @@
 			{ EUR: 0, USD: 0 },
 		),
 	)
-
-	const onsubmit = (e: FormDataEvent) => {
-		console.log(e.formData.get('date'))
-	}
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
@@ -55,17 +51,28 @@
 				</div>
 			{/each}
 		</div>
-		<form class="flex flex-1 flex-col gap-2" onformdata={onsubmit}>
+		<form class="flex flex-1 flex-col gap-2" method="post">
 			<input
 				name="sum"
 				type="text"
 				class="input input-sm input-bordered input-primary block w-full"
+				required
 			/>
 			<input
 				name="date"
 				type="date"
 				class="input input-sm input-bordered input-primary block w-full"
+				required
 			/>
+			<input
+				name="originalSum"
+				type="text"
+				class="input input-sm input-bordered input-primary block w-full"
+			/>
+			<select name="originalCurrency" class="select select-bordered select-sm">
+				<option value="EUR">EUR</option>
+				<option value="USD">USD</option>
+			</select>
 			<div class="flex gap-2">
 				<button type="submit" class="btn btn-outline btn-sm ml-auto">
 					<CheckIcon size="16" />
