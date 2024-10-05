@@ -7,3 +7,11 @@ export const payments = sqliteTable('payments', {
 	originalSum: integer('secondary_sum'),
 	originalCurrency: text('secondary_currency'),
 })
+
+export type Payment = {
+	id: number
+	sum: number
+	date: string
+	originalSum?: number
+	originalCurrency?: 'EUR' | 'USD'
+}
