@@ -47,13 +47,20 @@
 					<button type="button" class="btn btn-outline btn-xs ml-4">
 						<PenIcon size="16" onclick={() => (editedPayment = payment.id)} />
 					</button>
-					<button type="button" class="btn btn-outline btn-xs">
-						<XIcon size="16" />
-					</button>
+					<form action="?/delete" method="post">
+						<input type="hidden" name="id" value={payment.id} />
+						<button type="submit" class="btn btn-outline btn-xs">
+							<XIcon size="16" />
+						</button>
+					</form>
 				</div>
 			{/each}
 		</div>
-		<form class="flex flex-1 flex-col gap-2" method="post">
+		<form
+			class="flex flex-1 flex-col gap-2"
+			method="post"
+			action={`?/${editedPayment ? 'update' : 'insert'}`}
+		>
 			<input name="id" type="hidden" value={editedPayment} />
 			<input
 				name="sum"
