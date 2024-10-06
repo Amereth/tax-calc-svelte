@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { MONTHS } from '$lib/constants/month'
 	import type { Payment } from '$lib/server/schemas/payments'
+	import { formatter } from '$lib/utils/formatter'
 	import { CheckIcon, XIcon, PenIcon } from 'lucide-svelte'
 
 	const { month, payments }: { month: number; payments: Payment[] } = $props()
@@ -19,14 +20,6 @@
 	)
 
 	let editedPayment: Payment['id'] | undefined = $state(undefined)
-
-	const formatter = (currency: string) =>
-		new Intl.NumberFormat('uk-UA', {
-			style: 'currency',
-			currency,
-			currencyDisplay: 'narrowSymbol',
-			maximumFractionDigits: 0,
-		})
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
@@ -51,7 +44,7 @@
 		<div class="flex-1">
 			{#each payments as payment}
 				<div class="flex items-center gap-2">
-					<div class="text-xl">{payment.sum}</div>
+					<div class="text-xl">{formatter('UAH').format(payment.sum)}</div>
 					<button type="button" class="btn btn-outline btn-xs ml-4">
 						<PenIcon size="16" onclick={() => (editedPayment = payment.id)} />
 					</button>
