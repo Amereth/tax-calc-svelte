@@ -19,7 +19,7 @@
 		),
 	)
 
-	let editedPayment: Payment['id'] | undefined = $state(undefined)
+	let editedPayment: Payment['id'] | undefined = $state()
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
@@ -45,12 +45,16 @@
 			{#each payments as payment}
 				<div class="flex items-center gap-2">
 					<div class="text-xl">{formatter('UAH').format(payment.sum)}</div>
-					<button type="button" class="btn btn-outline btn-xs ml-4">
-						<PenIcon size="16" onclick={() => (editedPayment = payment.id)} />
+					<button
+						type="button"
+						class="btn btn-square btn-sm ml-4"
+						onclick={() => (editedPayment = payment.id)}
+					>
+						<PenIcon size="16" />
 					</button>
 					<form action="?/delete" method="post">
 						<input type="hidden" name="id" value={payment.id} />
-						<button type="submit" class="btn btn-outline btn-xs">
+						<button type="submit" class="btn btn-square btn-sm">
 							<XIcon size="16" />
 						</button>
 					</form>
@@ -96,12 +100,12 @@
 				<option value="USD">USD</option>
 			</select>
 			<div class="flex gap-2">
-				<button type="submit" class="btn btn-outline btn-sm ml-auto">
+				<button type="submit" class="btn btn-square btn-sm ml-auto">
 					<CheckIcon size="16" />
 				</button>
 				<button
 					type="reset"
-					class="btn btn-outline btn-sm"
+					class="btn btn-square btn-sm"
 					onclick={() => (editedPayment = undefined)}
 				>
 					<XIcon size="16" />
