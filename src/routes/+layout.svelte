@@ -17,14 +17,23 @@
 	]
 </script>
 
-<header>
-	<select bind:value={year} class="select select-bordered" onchange={() => goto(`/${year}`)}>
+<header class="flex items-center gap-8">
+	<select
+		bind:value={year}
+		class="select select-bordered"
+		onchange={() => {
+			const url = $page.url.pathname.slice(0, -5)
+			goto(`${url}/${year}`)
+		}}
+	>
 		{#each options as option}
 			<option value={option}>{option}</option>
 		{/each}
 	</select>
-	<a class="link link-primary" href={`/payments/${year}`}>payments</a>
-	<a class="link link-primary" href={`/esv/${year}`}>esv</a>
+	<nav class="flex gap-8">
+		<a class="link link-primary" href={`/payments/${year}`}>payments</a>
+		<a class="link link-primary" href={`/esv/${year}`}>esv</a>
+	</nav>
 </header>
 
 {@render children()}
