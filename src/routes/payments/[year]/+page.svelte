@@ -5,17 +5,19 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import Summary from '$lib/components/summary.svelte'
 
-	let year = $state($page.params.year)
+	const year = $derived($page.params.year)
 
 	const data = $page.data as { payments: Payment[] }
 
-	const currentYearPayments = data.payments.filter((payment) => {
-		const [paymentYear] = payment.date.split('-').map(Number)
-		return paymentYear === +year
-	})
+	const currentYearPayments = $derived(
+		data.payments.filter((payment) => {
+			const [paymentYear] = payment.date.split('-').map(Number)
+			return paymentYear === +year
+		}),
+	)
 </script>
 
-<main class="mt-2 flex flex-col gap-2">
+<div class="flex flex-col gap-2">
 	{#each MONTHS as month, index}
 		<Month
 			month={index}
@@ -39,4 +41,4 @@
 			/>
 		{/if}
 	{/each}
-</main>
+</div>

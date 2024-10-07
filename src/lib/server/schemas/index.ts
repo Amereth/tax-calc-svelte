@@ -1,7 +1,2 @@
-import * as payments from './payments'
-
-export const schema = {
-	...payments,
-}
-
-export default schema
+export { payments } from './payments'
+export { esv } from './esv'

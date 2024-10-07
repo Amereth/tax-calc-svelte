@@ -17,14 +17,12 @@ export const actions = {
 	insert: async ({ request }) => {
 		const data = await request.formData()
 
-		const resp = await db.insert(payments).values({
+		db.insert(payments).values({
 			sum: Number(data.get('sum')),
 			date: data.get('date') as string,
 			originalCurrency: data.get('originalCurrency') as string,
 			originalSum: Number(data.get('originalSum')),
 		})
-
-		console.log('default: ~ resp:', resp)
 	},
 
 	update: async ({ request }) => {
@@ -32,8 +30,7 @@ export const actions = {
 
 		const id = data.get('id')
 
-		const resp = await db
-			.update(payments)
+		db.update(payments)
 			.set({
 				sum: Number(data.get('sum')),
 				date: data.get('date') as string,
@@ -41,8 +38,6 @@ export const actions = {
 				originalSum: Number(data.get('originalSum')),
 			})
 			.where(eq(payments.id, Number(id)))
-
-		console.log('default: ~ resp:', resp)
 	},
 
 	delete: async ({ request }) => {
@@ -50,8 +45,6 @@ export const actions = {
 
 		const id = data.get('id')
 
-		const resp = await db.delete(payments).where(eq(payments.id, Number(id)))
-
-		console.log('default: ~ resp:', resp)
+		db.delete(payments).where(eq(payments.id, Number(id)))
 	},
 } satisfies Actions

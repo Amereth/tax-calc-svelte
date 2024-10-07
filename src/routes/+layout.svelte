@@ -8,8 +8,6 @@
 
 	let { children } = $props()
 
-	console.log($page)
-
 	const data = $page.data as { payments: Payment[] }
 
 	const options = [
@@ -36,4 +34,6 @@
 	</nav>
 </header>
 
-{@render children()}
+<main class="mt-2">
+	{@render children()}
+</main>
