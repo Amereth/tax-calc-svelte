@@ -15,6 +15,13 @@
       "when": 1728248735350,
       "tag": "0001_dizzy_demogoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1728411368095,
+      "tag": "0002_dark_otto_octavius",
+      "breakpoints": true
     }
   ]
 }
