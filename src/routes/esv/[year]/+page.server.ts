@@ -1,12 +1,12 @@
 import { db } from '$lib/server/db'
-import { getEsv } from '$lib/server/utils/getEsv'
+import { getEsvs } from '$lib/server/utils/getEsv'
 import type { Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { esv } from '$lib/server/schemas'
 import { eq } from 'drizzle-orm'
 
 export const load: PageServerLoad = async () => {
-	const esv = await getEsv()
+	const esv = await getEsvs()
 
 	return { esv }
 }
