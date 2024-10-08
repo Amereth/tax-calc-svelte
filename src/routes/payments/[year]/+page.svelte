@@ -5,10 +5,11 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import Summary from '$lib/components/summary.svelte'
 	import type { Esv } from '$lib/server/schemas/esv'
+	import type { Ep } from '$lib/server/schemas/ep'
 
 	const year = $derived($page.params.year)
 
-	const { payments, esvs } = $page.data as { payments: Payment[]; esvs: Esv[] }
+	const { payments, esvs, eps } = $page.data as { payments: Payment[]; esvs: Esv[]; eps: Ep[] }
 
 	const currentYearPayments = $derived(
 		payments.filter((payment) => {
@@ -21,6 +22,13 @@
 		esvs.filter((esv) => {
 			const [esvYear] = esv.date.split('-').map(Number)
 			return esvYear === +year
+		}),
+	)
+
+	const currentYearEps = $derived(
+		eps.filter((ep) => {
+			const [epYear] = ep.date.split('-').map(Number)
+			return epYear === +year
 		}),
 	)
 </script>
@@ -48,9 +56,12 @@
 				esvs={currentYearEsvs.filter((esv) =>
 					[index - 2, index - 1, index].includes(+esv.date.split('-')[1] - 1),
 				)}
+				eps={currentYearEps.filter((ep) =>
+					[index - 2, index - 1, index].includes(+ep.date.split('-')[1] - 1),
+				)}
 			/>
 		{/if}
 	{/each}
 
-	<Summary payments={currentYearPayments} esvs={currentYearEsvs} />
+	<Summary payments={currentYearPayments} esvs={currentYearEsvs} eps={currentYearEps} />
 </div>

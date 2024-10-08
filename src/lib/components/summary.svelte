@@ -1,9 +1,10 @@
 <script lang="ts">
+	import type { Ep } from '$lib/server/schemas/ep'
 	import type { Esv } from '$lib/server/schemas/esv'
 	import type { Payment } from '$lib/server/schemas/payments'
 	import { formatter } from '$lib/utils/formatter'
 
-	const { payments, esvs }: { payments: Payment[]; esvs: Esv[] } = $props()
+	const { payments, esvs, eps }: { payments: Payment[]; esvs: Esv[]; eps: Ep[] } = $props()
 
 	const total = $derived(payments.reduce((acc, payment) => acc + payment.sum, 0))
 
@@ -22,6 +23,15 @@
 	)
 
 	const totalEsv = $derived(esvs.reduce((acc, esv) => acc + (esv.value || 0), 0))
+
+	const totalEp = $derived(
+		payments.reduce((acc, payment) => {
+			const ep = eps.find((ep) => ep.date === payment.date.slice(0, 7))
+			if (!ep) return acc
+			acc = acc + payment.sum * ep.value
+			return acc
+		}, 0),
+	)
 </script>
 
 <div>
@@ -33,7 +43,7 @@
 			</span>
 			<span class="ml-12 w-10">ЄП</span>
 			<span>
-				{formatter('UAH').format(totalEsv)}
+				{formatter('UAH').format(totalEp)}
 			</span>
 		</div>
 
