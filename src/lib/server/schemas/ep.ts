@@ -6,7 +6,7 @@ export const ep = sqliteTable('ep', {
 	date: text('date').notNull(),
 })
 
-export type Esv = {
+export type Ep = {
 	id: number
 	value: number
 	date: string

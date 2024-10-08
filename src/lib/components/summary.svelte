@@ -24,15 +24,14 @@
 	const totalEsv = $derived(esvs.reduce((acc, esv) => acc + (esv.value || 0), 0))
 </script>
 
-<div class="">
+<div>
 	<div class="mb-6 ml-4 flex gap-8 pr-12">
 		<div class="flex gap-4">
-			<span>ЄСВ</span>
-			<span class="ml-auto">
+			<span class="w-10">ЄСВ</span>
+			<span class="w-20">
 				{formatter('UAH').format(totalEsv)}
 			</span>
-
-			<span class="ml-12 inline-block">ЄП</span>
+			<span class="ml-12 w-10">ЄП</span>
 			<span>
 				{formatter('UAH').format(totalEsv)}
 			</span>
