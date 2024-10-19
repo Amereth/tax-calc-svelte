@@ -6,31 +6,17 @@
 	import Summary from '$lib/components/summary.svelte'
 	import type { Esv } from '$lib/server/schemas/esv'
 	import type { Ep } from '$lib/server/schemas/ep'
+	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
 
 	const year = $derived($page.params.year)
 
 	const { payments, esvs, eps } = $page.data as { payments: Payment[]; esvs: Esv[]; eps: Ep[] }
 
-	const currentYearPayments = $derived(
-		payments.filter((payment) => {
-			const [paymentYear] = payment.date.split('-').map(Number)
-			return paymentYear === +year
-		}),
-	)
+	const currentYearPayments = $derived(getCurrentYearValues(year, payments))
 
-	const currentYearEsvs = $derived(
-		esvs.filter((esv) => {
-			const [esvYear] = esv.date.split('-').map(Number)
-			return esvYear === +year
-		}),
-	)
+	const currentYearEsvs = $derived(getCurrentYearValues(year, esvs))
 
-	const currentYearEps = $derived(
-		eps.filter((ep) => {
-			const [epYear] = ep.date.split('-').map(Number)
-			return epYear === +year
-		}),
-	)
+	const currentYearEps = $derived(getCurrentYearValues(year, eps))
 </script>
 
 <div class="flex flex-col gap-2">
