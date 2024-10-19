@@ -19,7 +19,7 @@
 <div class="flex flex-col items-center gap-2">
 	{#each MONTHS as month, index}
 		<TaxMonth
-			date={`${year}-${(index + 1).toString().padStart(2, '0')}`}
+			date="{year}-{(index + 1).toString().padStart(2, '0')}"
 			value={getValue(index)?.value}
 		/>
 	{/each}

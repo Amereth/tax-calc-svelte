@@ -29,9 +29,10 @@
 		{/each}
 	</select>
 	<nav class="flex gap-8">
-		<a class="link link-primary" href={`/payments/${year}`}>payments</a>
-		<a class="link link-primary" href={`/esv/${year}`}>ЄСВ</a>
-		<a class="link link-primary" href={`/ep/${year}`}>ЄП</a>
+		<a class="link link-primary" href="/payments/{year}">payments</a>
+		<a class="link link-primary" href="/esv/{year}">ЄСВ</a>
+		<a class="link link-primary" href="/ep/{year}">ЄП</a>
+		<a class="link link-primary" href="/tax-payments/{year}">tax payments</a>
 	</nav>
 </header>
 

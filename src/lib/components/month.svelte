@@ -64,7 +64,7 @@
 		<form
 			class="flex flex-1 flex-col gap-2"
 			method="post"
-			action={`?/${editedPayment ? 'update' : 'insert'}`}
+			action="?/{editedPayment ? 'update' : 'insert'}"
 		>
 			<input name="id" type="hidden" value={editedPayment} />
 			<input
