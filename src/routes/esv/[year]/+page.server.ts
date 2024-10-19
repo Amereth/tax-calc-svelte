@@ -20,10 +20,10 @@ export const actions = {
 		const isUpdate = !!data.get('isUpdate')
 
 		if (isUpdate) {
-			db.update(esv).set({ date, value }).where(eq(esv.date, date))
+			db.update(esv).set({ date, value }).where(eq(esv.date, date)).execute()
 			return
 		}
 
-		db.insert(esv).values({ date, value })
+		db.insert(esv).values({ date, value }).execute()
 	},
 } satisfies Actions

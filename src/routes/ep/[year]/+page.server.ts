@@ -20,9 +20,9 @@ export const actions = {
 		const isUpdate = !!data.get('isUpdate')
 
 		if (isUpdate) {
-			db.update(ep).set({ date, value }).where(eq(ep.date, date))
+			db.update(ep).set({ date, value }).where(eq(ep.date, date)).execute()
 			return
 		}
-		db.insert(ep).values({ date, value })
+		db.insert(ep).values({ date, value }).execute()
 	},
 } satisfies Actions
