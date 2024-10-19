@@ -18,7 +18,7 @@
 <header class="flex items-center gap-8">
 	<select
 		bind:value={year}
-		class="select select-bordered"
+		class="select select-bordered select-sm"
 		onchange={() => {
 			const url = $page.url.pathname.slice(0, -5)
 			goto(`${url}/${year}`)
