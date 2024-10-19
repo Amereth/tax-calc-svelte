@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/libsql'
 import { createClient } from '@libsql/client'
-import { schema } from './schemas'
+import * as schema from './schemas'
 import { DATABASE_URL, DATABASE_AUTH_TOKEN } from '$env/static/private'
 
 const client = createClient({
