@@ -22,7 +22,7 @@
 	let editedPayment: Payment['id'] | undefined = $state()
 </script>
 
-<div class="collapse border-[1px] border-primary bg-base-200">
+<div class="collapse rounded-xl border-[1px] border-primary bg-base-200">
 	<input type="checkbox" class="min-h-[40px]" />
 	<div class="text-md collapse-title flex min-h-[40px] justify-between py-2 font-medium">
 		<div>{MONTHS[month]}</div>
