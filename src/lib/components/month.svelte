@@ -23,7 +23,7 @@
 </script>
 
 <div class="collapse border-[1px] border-primary bg-base-200">
-	<input type="checkbox" checked={month === 0} class="min-h-[40px]" />
+	<input type="checkbox" class="min-h-[40px]" />
 	<div class="text-md collapse-title flex min-h-[40px] justify-between py-2 font-medium">
 		<div>{MONTHS[month]}</div>
 		<div class="flex gap-8">
