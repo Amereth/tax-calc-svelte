@@ -3,17 +3,25 @@ import { events } from '$lib/server/schemas'
 import type { Event } from '$lib/server/schemas/events'
 import { getEps } from '$lib/server/utils/getEps'
 import { getEsvs } from '$lib/server/utils/getEsv'
+import { getEvents } from '$lib/server/utils/getEvents'
 import { getPayments } from '$lib/server/utils/getPayments'
 import { toObject } from '$lib/utils/formDataToObject'
+import { eq } from 'drizzle-orm'
 import type { Actions, PageServerLoad } from './$types'
 
-export const load: PageServerLoad = async () => {
-	const [payments, esvs, eps] = await Promise.all([getPayments(), getEsvs(), getEps()])
+export const load: PageServerLoad = async ({ params }) => {
+	const [payments, esvs, eps, events] = await Promise.all([
+		getPayments(),
+		getEsvs(),
+		getEps(),
+		getEvents({ year: +params.year }),
+	])
 
 	return {
 		payments,
 		esvs,
 		eps,
+		events,
 	}
 }
 
@@ -30,5 +38,23 @@ export const actions = {
 		}
 
 		await db.insert(events).values(insertData)
+	},
+	update: async ({ request }) => {
+		const formData = await request.formData()
+		const data = toObject(formData) as Omit<Event, 'id'> & { id?: number }
+
+		const insertData = {
+			...data,
+			year: Number(data.year),
+			quarter: Number(data.quarter) as Event['quarter'],
+			sum: Number(data.sum),
+		}
+
+		delete insertData.id
+
+		await db
+			.update(events)
+			.set(insertData)
+			.where(eq(events.id, Number(data.id)))
 	},
 } satisfies Actions

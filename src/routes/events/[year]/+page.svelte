@@ -3,16 +3,18 @@
 	import EventForm from '$lib/components/eventForm.svelte'
 	import type { Ep } from '$lib/server/schemas/ep'
 	import type { Esv } from '$lib/server/schemas/esv'
+	import type { Event } from '$lib/server/schemas/events'
 	import type { Payment } from '$lib/server/schemas/payments'
 	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
 	import { getQuarterValues } from '../../../utils/getQuarterValues'
 
 	let year = $derived($page.params.year)
 
-	let { payments, esvs, eps } = $derived($page.data) as {
+	let { payments, esvs, eps, events } = $derived($page.data) as {
 		payments: Payment[]
 		esvs: Esv[]
 		eps: Ep[]
+		events: Event[]
 	}
 </script>
 
@@ -24,14 +26,55 @@
 			eps: getCurrentYearValues(year, eps),
 			esvs: getCurrentYearValues(year, esvs),
 		})}
+
+		{@const [declarationEvent, esvEvent, epEvent] = events
+			.filter((event) => event.quarter === quarter)
+			.reduce<[Event | undefined, Event | undefined, Event | undefined]>(
+				(acc, event) => {
+					if (event.type === 'declaration') acc[0] = event
+					if (event.type === 'esv') acc[1] = event
+					if (event.type === 'ep') acc[2] = event
+
+					return acc
+				},
+				[undefined, undefined, undefined],
+			)}
+
 		<div class="flex flex-col gap-4 rounded-xl border-[1px] border-primary p-4">
 			<div class="mr-4 text-right">{quarter} квартал {year}</div>
 
-			<EventForm {year} {quarter} type="declaration" sum={quarterSum} eventLabel="декларація" />
+			<EventForm
+				id={declarationEvent?.id}
+				{year}
+				{quarter}
+				sum={declarationEvent?.sum || quarterSum}
+				doneDate={declarationEvent?.doneDate}
+				latestDoneDate={declarationEvent?.latestDoneDate}
+				type="declaration"
+				eventLabel="декларація"
+			/>
 
-			<EventForm {year} {quarter} type="esv" sum={quarterEsv} eventLabel="ЄСВ" />
+			<EventForm
+				id={esvEvent?.id}
+				{year}
+				{quarter}
+				sum={esvEvent?.sum ?? quarterEsv}
+				doneDate={esvEvent?.doneDate}
+				latestDoneDate={esvEvent?.latestDoneDate}
+				type="esv"
+				eventLabel="ЄСВ"
+			/>
 
-			<EventForm {year} {quarter} type="ep" sum={quarterEp} eventLabel="ЄП" />
+			<EventForm
+				id={epEvent?.id}
+				{year}
+				{quarter}
+				sum={epEvent?.sum ?? quarterEp}
+				doneDate={epEvent?.doneDate}
+				latestDoneDate={epEvent?.latestDoneDate}
+				type="ep"
+				eventLabel="ЄП"
+			/>
 		</div>
 	{/each}
 </div>

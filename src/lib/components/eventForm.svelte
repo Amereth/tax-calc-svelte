@@ -4,27 +4,31 @@
 	import type { Event } from '$lib/server/schemas/events'
 
 	const {
-		eventId,
+		id,
 		year,
 		quarter,
 		type,
-		eventLabel,
 		sum,
+		doneDate,
+		latestDoneDate,
+		eventLabel,
 	}: {
-		eventId?: Event['id']
-		year: String
+		id?: Event['id']
+		year: string
 		quarter: number
 		type: Event['type']
-		eventLabel: string
 		sum: number
+		doneDate?: Event['doneDate']
+		latestDoneDate?: Event['latestDoneDate']
+		eventLabel: string
 	} = $props()
 </script>
 
-<form class="flex flex-col gap-2" method="post" action="?/{eventId ? 'update' : 'insert'}">
+<form class="flex flex-col gap-2" method="post" action="?/{id ? 'update' : 'insert'}">
 	<div>{eventLabel}</div>
 
-	{#if eventId}
-		<input type="hidden" value={eventId} name="id" />
+	{#if id}
+		<input type="hidden" value={id} name="id" />
 	{/if}
 
 	<input type="hidden" value={year} name="year" />
@@ -38,21 +42,15 @@
 
 	<label class="input input-sm input-bordered flex items-center gap-2">
 		дата
-		<input type="date" name="doneDate" class="ml-auto" />
+		<input type="date" value={doneDate} name="doneDate" class="ml-auto" />
 	</label>
 
 	<label class="input input-sm input-bordered flex items-center gap-2">
 		гранична дата
-		<input type="date" name="latestDoneDate" class="ml-auto" />
+		<input type="date" value={latestDoneDate} name="latestDoneDate" class="ml-auto" />
 	</label>
 
-	<div class="ml-auto mr-2">
-		<button type="submit" class="btn btn-square btn-sm">
-			<CheckIcon size="16" />
-		</button>
-
-		<button type="reset" class="btn btn-square btn-sm">
-			<XIcon size="16" />
-		</button>
-	</div>
+	<button type="submit" class="btn btn-square btn-outline btn-success btn-sm ml-auto">
+		<CheckIcon size="16" />
+	</button>
 </form>
