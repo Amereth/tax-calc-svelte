@@ -27,17 +27,11 @@
 		<div class="flex flex-col gap-4 rounded-xl border-[1px] border-primary p-4">
 			<div class="mr-4 text-right">{quarter} квартал {year}</div>
 
-			<EventForm
-				{year}
-				{quarter}
-				eventType="declaration"
-				taxValue={quarterSum}
-				eventLabel="декларація"
-			/>
+			<EventForm {year} {quarter} type="declaration" sum={quarterSum} eventLabel="декларація" />
 
-			<EventForm {year} {quarter} eventType="esv" taxValue={quarterEsv} eventLabel="ЄСВ" />
+			<EventForm {year} {quarter} type="esv" sum={quarterEsv} eventLabel="ЄСВ" />
 
-			<EventForm {year} {quarter} eventType="ep" taxValue={quarterEp} eventLabel="ЄП" />
+			<EventForm {year} {quarter} type="ep" sum={quarterEp} eventLabel="ЄП" />
 		</div>
 	{/each}
 </div>

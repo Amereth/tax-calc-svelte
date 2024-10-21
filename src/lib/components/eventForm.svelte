@@ -4,40 +4,46 @@
 	import type { Event } from '$lib/server/schemas/events'
 
 	const {
+		eventId,
 		year,
 		quarter,
-		eventType,
+		type,
 		eventLabel,
-		taxValue,
+		sum,
 	}: {
+		eventId?: Event['id']
 		year: String
 		quarter: number
-		eventType: Event['type']
+		type: Event['type']
 		eventLabel: string
-		taxValue: number
+		sum: number
 	} = $props()
 </script>
 
-<form class="flex flex-col gap-2">
+<form class="flex flex-col gap-2" method="post" action="?/{eventId ? 'update' : 'insert'}">
 	<div>{eventLabel}</div>
+
+	{#if eventId}
+		<input type="hidden" value={eventId} name="id" />
+	{/if}
 
 	<input type="hidden" value={year} name="year" />
 	<input type="hidden" value={quarter} name="quarter" />
-	<input type="hidden" value={eventType} name="eventType" />
+	<input type="hidden" value={type} name="type" />
 
 	<label class="input input-sm input-bordered flex items-center gap-2">
 		сума
-		<MinSizeInput value={taxValue} name="sum" className="ml-auto" />
+		<MinSizeInput value={sum} name="sum" className="ml-auto" />
 	</label>
 
 	<label class="input input-sm input-bordered flex items-center gap-2">
 		дата
-		<input type="date" name="payDate" class="ml-auto" />
+		<input type="date" name="doneDate" class="ml-auto" />
 	</label>
 
 	<label class="input input-sm input-bordered flex items-center gap-2">
 		гранична дата
-		<input type="date" name="latestPayDate" class="ml-auto" />
+		<input type="date" name="latestDoneDate" class="ml-auto" />
 	</label>
 
 	<div class="ml-auto mr-2">
