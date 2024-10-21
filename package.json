@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@formkit/tempo": "^0.1.2",
 		"@libsql/client": "^0.14.0",
 		"drizzle-orm": "^0.35.2",
 		"lucide-svelte": "^0.453.0"
