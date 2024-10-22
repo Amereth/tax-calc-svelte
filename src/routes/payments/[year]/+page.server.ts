@@ -10,11 +10,7 @@ import { getEps } from '$lib/server/utils/getEps'
 export const load: PageServerLoad = async () => {
 	const [payments, esvs, eps] = await Promise.all([getPayments(), getEsvs(), getEps()])
 
-	return {
-		payments,
-		esvs,
-		eps,
-	}
+	return { payments, esvs, eps }
 }
 
 export const actions = {

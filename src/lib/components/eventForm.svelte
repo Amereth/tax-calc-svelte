@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { CheckIcon, XIcon } from 'lucide-svelte'
+	import { CheckIcon } from 'lucide-svelte'
 	import MinSizeInput from './minSizeInput.svelte'
 	import type { Event } from '$lib/server/schemas/events'
+	import EventLabel from './eventLabel.svelte'
 
 	const {
 		id,
@@ -25,7 +26,7 @@
 </script>
 
 <form class="flex flex-col gap-2" method="post" action="?/{id ? 'update' : 'insert'}">
-	<div>{eventLabel}</div>
+	<div class="ml-2">{eventLabel}</div>
 
 	{#if id}
 		<input type="hidden" value={id} name="id" />
@@ -50,7 +51,11 @@
 		<input type="date" value={latestDoneDate} name="latestDoneDate" class="ml-auto" />
 	</label>
 
-	<button type="submit" class="btn btn-square btn-outline btn-success btn-sm ml-auto">
-		<CheckIcon size="16" />
-	</button>
+	<div class="flex items-center px-2">
+		<EventLabel {latestDoneDate} />
+
+		<button type="submit" class="btn btn-square btn-outline btn-success btn-sm ml-auto">
+			<CheckIcon size="16" />
+		</button>
+	</div>
 </form>

@@ -17,12 +17,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		getEvents({ year: +params.year }),
 	])
 
-	return {
-		payments,
-		esvs,
-		eps,
-		events,
-	}
+	return { payments, esvs, eps, events }
 }
 
 export const actions = {

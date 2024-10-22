@@ -36,6 +36,6 @@
 	</nav>
 </header>
 
-<main class="mt-2">
+<main class="mt-8">
 	{@render children()}
 </main>
