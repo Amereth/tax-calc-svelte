@@ -22,13 +22,13 @@
 	const diffInDays = $derived(latestDoneDate && diffDays(dayEnd(latestDoneDate), dayEnd(now)))
 </script>
 
-{#if !latestDoneDate}
-	<!-- nothing -->
-{:else if doneDate}
+{#if doneDate}
 	<div class="flex gap-2 text-success">
 		<CheckIcon size="24" />
 		<span>done</span>
 	</div>
+{:else if !latestDoneDate}
+	<!-- nothing -->
 {:else if isLastDayToday}
 	<div class="flex gap-2 text-orange-500">
 		<CircleAlert size="24" />
