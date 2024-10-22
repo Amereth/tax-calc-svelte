@@ -1,5 +1,5 @@
 import { db } from '$lib/server/db'
-import { getEsvs } from '$lib/server/utils/getEsv'
+import { getEsvs } from '$lib/server/utils/getEsvs'
 import type { Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { esv } from '$lib/server/schemas'

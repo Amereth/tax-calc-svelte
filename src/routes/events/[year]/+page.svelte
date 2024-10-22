@@ -1,10 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import EventForm from '$lib/components/eventForm.svelte'
-	import type { Ep } from '$lib/server/schemas/ep'
-	import type { Esv } from '$lib/server/schemas/esv'
-	import type { Event } from '$lib/server/schemas/events'
-	import type { Payment } from '$lib/server/schemas/payments'
+	import type { Ep, Esv, Event, Payment } from '$lib/server/schemas/types'
 	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
 	import { getQuarterValues } from '../../../utils/getQuarterValues'
 
