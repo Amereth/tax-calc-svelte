@@ -52,7 +52,7 @@
 	</label>
 
 	<div class="flex items-center px-2">
-		<EventLabel {latestDoneDate} />
+		<EventLabel {doneDate} {latestDoneDate} />
 
 		<button type="submit" class="btn btn-square btn-outline btn-success btn-sm ml-auto">
 			<CheckIcon size="16" />

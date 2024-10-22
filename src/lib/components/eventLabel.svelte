@@ -1,11 +1,15 @@
 <script lang="ts">
 	import type { Event } from '$lib/server/schemas/events'
 	import { date, dayEnd, diffDays, sameDay } from '@formkit/tempo'
-	import { CircleAlert } from 'lucide-svelte'
+	import { CheckIcon, CircleAlert } from 'lucide-svelte'
 
 	const {
+		doneDate,
 		latestDoneDate: _latestDoneDate,
-	}: { latestDoneDate: Event['latestDoneDate'] | undefined } = $props()
+	}: {
+		doneDate?: Event['doneDate']
+		latestDoneDate: Event['latestDoneDate'] | undefined
+	} = $props()
 
 	const latestDoneDate = $derived(_latestDoneDate && date(_latestDoneDate))
 
@@ -20,6 +24,11 @@
 
 {#if !latestDoneDate}
 	<!-- nothing -->
+{:else if doneDate}
+	<div class="flex gap-2 text-success">
+		<CheckIcon size="24" />
+		<span>done</span>
+	</div>
 {:else if isLastDayToday}
 	<div class="flex gap-2 text-orange-500">
 		<CircleAlert size="24" />
