@@ -5,8 +5,8 @@ import type { PageServerLoad } from './$types'
 import { ep } from '$lib/server/schemas'
 import { eq } from 'drizzle-orm'
 
-export const load: PageServerLoad = async () => {
-	const eps = await getEps()
+export const load: PageServerLoad = async ({ params }) => {
+	const eps = await getEps({ year: +params.year })
 
 	return { eps }
 }

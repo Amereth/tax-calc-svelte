@@ -8,9 +8,9 @@ import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ params }) => {
 	const [payments, esvs, eps, events] = await Promise.all([
-		getPayments(),
-		getEsvs(),
-		getEps(),
+		getPayments({ year: +params.year }),
+		getEsvs({ year: +params.year }),
+		getEps({ year: +params.year }),
 		getEvents({ year: +params.year }),
 	])
 

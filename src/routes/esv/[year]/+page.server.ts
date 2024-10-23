@@ -5,8 +5,8 @@ import type { PageServerLoad } from './$types'
 import { esv } from '$lib/server/schemas'
 import { eq } from 'drizzle-orm'
 
-export const load: PageServerLoad = async () => {
-	const esv = await getEsvs()
+export const load: PageServerLoad = async ({ params }) => {
+	const esv = await getEsvs({ year: +params.year })
 
 	return { esv }
 }

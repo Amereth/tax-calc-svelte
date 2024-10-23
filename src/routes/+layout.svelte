@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css'
-	import type { Payment } from '$lib/server/schemas/payments'
+	import type { Payment } from '$lib/server/schemas/types'
 	import { page } from '$app/stores'
 	import { goto } from '$app/navigation'
 
