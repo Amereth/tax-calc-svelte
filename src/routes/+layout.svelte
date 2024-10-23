@@ -8,11 +8,7 @@
 
 	let { children } = $props()
 
-	const data = $page.data as { payments: Payment[] }
-
-	const options = [
-		...data.payments.reduce((acc, payment) => acc.add(payment.date.split('-')[0]), new Set()),
-	]
+	const { years } = $page.data as { years: string[] }
 </script>
 
 <header class="flex items-center gap-8">
@@ -24,8 +20,8 @@
 			goto(`${url}/${year}`)
 		}}
 	>
-		{#each options as option}
-			<option value={option}>{option}</option>
+		{#each years as year}
+			<option value={year}>{year}</option>
 		{/each}
 	</select>
 	<nav class="flex gap-8">
