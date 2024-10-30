@@ -50,6 +50,13 @@
       "when": 1730320208163,
       "tag": "0006_migrate-data-from-esv-to-tax",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1730321846941,
+      "tag": "0007_migrate-data-from-ep-to-tax",
+      "breakpoints": true
     }
   ]
 }
