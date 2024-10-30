@@ -36,6 +36,13 @@
       "when": 1729369261878,
       "tag": "0004_fancy_hardball",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1730320062274,
+      "tag": "0005_modern_mercury",
+      "breakpoints": true
     }
   ]
 }
