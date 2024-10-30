@@ -1,7 +1,7 @@
 import { db } from '$lib/server/db'
 import { events } from '$lib/server/schemas'
 import type { Event } from '$lib/server/schemas/events'
-import { getEps, getEsvs, getEvents, getPayments } from '$lib/server/utils'
+import { getEvents, getPayments, getTaxes } from '$lib/server/utils'
 import { toObject } from '$lib/utils/formDataToObject'
 import { eq } from 'drizzle-orm'
 import type { Actions, PageServerLoad } from './$types'
@@ -9,8 +9,8 @@ import type { Actions, PageServerLoad } from './$types'
 export const load: PageServerLoad = async ({ params }) => {
 	const [payments, esvs, eps, events] = await Promise.all([
 		getPayments({ year: +params.year }),
-		getEsvs({ year: +params.year }),
-		getEps({ year: +params.year }),
+		getTaxes({ year: +params.year, name: 'esv' }),
+		getTaxes({ year: +params.year, name: 'ep' }),
 		getEvents({ year: +params.year }),
 	])
 

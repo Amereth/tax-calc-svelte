@@ -2,8 +2,8 @@ import { db } from '$lib/server/db'
 import type { Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { eq } from 'drizzle-orm'
-import { getTaxes } from '$lib/server/utils/getTaxes'
 import { tax } from '$lib/server/schemas'
+import { getTaxes } from '$lib/server/utils'
 
 export const load: PageServerLoad = async ({ params }) => {
 	const taxes = await getTaxes({ year: +params.year, name: params.taxName })

@@ -2,13 +2,13 @@ import { db } from '$lib/server/db'
 import { payments } from '$lib/server/schemas/payments'
 import { eq } from 'drizzle-orm'
 import type { PageServerLoad, Actions } from './$types'
-import { getEsvs, getEps, getPayments } from '$lib/server/utils'
+import { getPayments, getTaxes } from '$lib/server/utils'
 
 export const load: PageServerLoad = async ({ params }) => {
 	const [payments, esvs, eps] = await Promise.all([
 		getPayments({ year: +params.year }),
-		getEsvs({ year: +params.year }),
-		getEps({ year: +params.year }),
+		getTaxes({ year: +params.year, name: 'esv' }),
+		getTaxes({ year: +params.year, name: 'ep' }),
 	])
 
 	return { payments, esvs, eps }
