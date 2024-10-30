@@ -43,6 +43,13 @@
       "when": 1730320062274,
       "tag": "0005_modern_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1730320208163,
+      "tag": "0006_migrate-data-from-esv-to-tax",
+      "breakpoints": true
     }
   ]
 }
