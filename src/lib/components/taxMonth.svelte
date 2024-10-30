@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { MONTHS } from '$lib/constants/month'
+	import type { Tax } from '$lib/server/schemas/types'
 	import { PenIcon, CheckIcon, XIcon } from 'lucide-svelte'
 
 	let isEdited = $state(false)
 
-	const { date, value }: { date: string; value?: number } = $props()
+	const { date, sum, type }: { date: string; sum?: Tax['sum']; type: Tax['type'] } = $props()
 
 	const month = $derived(+date.split('-')[1])
 </script>
@@ -13,13 +14,16 @@
 	<div class="w-40">{MONTHS[month - 1]}</div>
 
 	{#if isEdited}
+		<input type="hidden" name="date" value={date} />
+		<input type="hidden" name="type" value={type} />
+		<input type="hidden" name="isUpdate" value={sum ? 1 : ''} />
+
 		<input
-			name="value"
-			{value}
+			name="sum"
+			value={sum}
 			class="input input-sm input-bordered input-primary w-40 text-center text-xl"
 		/>
-		<input name="date" value={date} type="hidden" />
-		<input name="isUpdate" value={value ? 1 : ''} type="hidden" />
+
 		<div>
 			<button class="btn btn-square btn-sm" type="submit">
 				<CheckIcon size="16" />
@@ -29,7 +33,7 @@
 			</button>
 		</div>
 	{:else}
-		<div class="w-40 text-center">{value}</div>
+		<div class="w-40 text-center">{sum}</div>
 		<button type="button" class="btn btn-square btn-sm ml-9" onclick={() => (isEdited = true)}>
 			<PenIcon size="16" />
 		</button>

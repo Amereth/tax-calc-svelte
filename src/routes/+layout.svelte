@@ -1,6 +1,5 @@
 <script lang="ts">
 	import '../app.css'
-	import type { Payment } from '$lib/server/schemas/types'
 	import { page } from '$app/stores'
 	import { goto } from '$app/navigation'
 
@@ -8,7 +7,7 @@
 
 	let { children } = $props()
 
-	const { years } = $page.data as { years: string[] }
+	const { years } = $derived($page.data) as { years: string[] }
 </script>
 
 <header class="flex items-center gap-8">
@@ -24,6 +23,7 @@
 			<option value={year}>{year}</option>
 		{/each}
 	</select>
+
 	<nav class="flex gap-8">
 		<a class="link link-primary" href="/payments/{year}">payments</a>
 		<a class="link link-primary" href="/esv/{year}">ЄСВ</a>
