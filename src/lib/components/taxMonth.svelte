@@ -5,18 +5,32 @@
 
 	let isEdited = $state(false)
 
-	const { date, sum, type }: { date: string; sum?: Tax['sum']; type: Tax['type'] } = $props()
+	const {
+		id,
+		date,
+		sum,
+		type,
+	}: {
+		id: Tax['id']
+		date: string
+		sum?: Tax['sum']
+		type: Tax['type']
+	} = $props()
 
 	const month = $derived(+date.split('-')[1])
 </script>
 
-<form class="flex items-center gap-8 border-b-[1px] py-2 text-xl" method="post">
+<form
+	class="flex items-center gap-8 border-b-[1px] py-2 text-xl"
+	method="post"
+	action={id ? '?/update' : '?/insert'}
+>
 	<div class="w-40">{MONTHS[month - 1]}</div>
 
 	{#if isEdited}
 		<input type="hidden" name="date" value={date} />
 		<input type="hidden" name="type" value={type} />
-		<input type="hidden" name="isUpdate" value={sum ? 1 : ''} />
+		<input type="hidden" name="id" value={id} />
 
 		<input
 			name="sum"

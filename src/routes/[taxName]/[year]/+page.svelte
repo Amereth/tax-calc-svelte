@@ -19,6 +19,7 @@
 
 		<TaxMonth
 			date="{year}-{(index + 1).toString().padStart(2, '0')}"
+			id={tax.id}
 			sum={tax.sum}
 			type={tax.type}
 		/>

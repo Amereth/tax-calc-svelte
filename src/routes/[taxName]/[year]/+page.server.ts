@@ -4,6 +4,7 @@ import type { PageServerLoad } from './$types'
 import { eq } from 'drizzle-orm'
 import { tax } from '$lib/server/schemas'
 import { getTaxes } from '$lib/server/utils'
+import type { Tax } from '$lib/server/schemas/tax'
 
 export const load: PageServerLoad = async ({ params }) => {
 	const taxes = await getTaxes({ year: +params.year, name: params.taxName })
@@ -12,19 +13,12 @@ export const load: PageServerLoad = async ({ params }) => {
 }
 
 export const actions = {
-	default: async ({ request, params }) => {
+	insert: async ({ request, params }) => {
 		const data = await request.formData()
 
 		const date = data.get('date') as string
 		const sum = Number(data.get('sum'))
 		const type = data.get('type') as 'fixed' | 'percent'
-
-		const isUpdate = !!data.get('isUpdate')
-
-		if (isUpdate) {
-			db.update(tax).set({ date, sum }).where(eq(tax.date, date)).execute()
-			return
-		}
 
 		db.insert(tax)
 			.values({
@@ -34,5 +28,14 @@ export const actions = {
 				type,
 			})
 			.execute()
+	},
+	update: async ({ request }) => {
+		const data = await request.formData()
+
+		const id = Number(data.get('id')) as Tax['id']
+		const date = data.get('date') as string
+		const sum = Number(data.get('sum'))
+
+		db.update(tax).set({ date, sum }).where(eq(tax.id, id)).execute()
 	},
 } satisfies Actions
