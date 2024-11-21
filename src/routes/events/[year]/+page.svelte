@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import EventForm from '$lib/components/eventForm.svelte'
-	import type { Ep, Esv, Event, Payment } from '$lib/server/schemas/types'
+	import type { Tax, Event, Payment } from '$lib/server/schemas/types'
 	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
 	import { getQuarterValues } from '../../../utils/getQuarterValues'
 
@@ -9,8 +9,8 @@
 
 	let { payments, esvs, eps, events } = $derived($page.data) as {
 		payments: Payment[]
-		esvs: Esv[]
-		eps: Ep[]
+		esvs: Tax[]
+		eps: Tax[]
 		events: Event[]
 	}
 </script>

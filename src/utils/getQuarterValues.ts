@@ -1,4 +1,4 @@
-import type { Ep, Esv, Payment } from '$lib/server/schemas/types'
+import type { Tax, Payment } from '$lib/server/schemas/types'
 
 export const getQuarterValues = ({
 	quarter,
@@ -8,8 +8,8 @@ export const getQuarterValues = ({
 }: {
 	quarter: number
 	payments: Payment[]
-	esvs: Esv[]
-	eps: Ep[]
+	esvs: Tax[]
+	eps: Tax[]
 }) => {
 	const quarterSum = payments.reduce((acc, payment) => {
 		const [, paymentMonth] = payment.date.split('-').map(Number)
@@ -26,7 +26,7 @@ export const getQuarterValues = ({
 		if (paymentMonth > quarter * 3) return acc
 		if (paymentMonth < quarter * 3 - 2) return acc
 
-		return acc + esv.value
+		return acc + esv.sum
 	}, 0)
 
 	const quarterEp = payments.reduce((acc, payment) => {
@@ -39,7 +39,7 @@ export const getQuarterValues = ({
 
 		if (!ep) return acc
 
-		return acc + payment.sum * ep.value
+		return acc + payment.sum * ep.sum
 	}, 0)
 
 	return {
