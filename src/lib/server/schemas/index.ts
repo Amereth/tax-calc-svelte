@@ -1,3 +1,5 @@
 export { payments } from './payments'
 export { events } from './events'
 export { taxes } from './tax'
+export { users } from './users'
+export { sessions } from './sessions'
