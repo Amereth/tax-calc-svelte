@@ -14,7 +14,8 @@
 		"test:integration": "playwright test",
 		"test:unit": "vitest",
 		"migration:generate": "drizzle-kit generate",
-		"migration:migrate": "drizzle-kit migrate"
+		"migration:migrate": "drizzle-kit migrate",
+		"studio": "npx drizzle-kit studio"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.48.1",
