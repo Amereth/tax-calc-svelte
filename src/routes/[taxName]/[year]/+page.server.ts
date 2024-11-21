@@ -2,7 +2,7 @@ import { db } from '$lib/server/db'
 import type { Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { eq } from 'drizzle-orm'
-import { tax } from '$lib/server/schemas'
+import { taxes } from '$lib/server/schemas'
 import { getTaxes } from '$lib/server/utils'
 import type { Tax } from '$lib/server/schemas/tax'
 
@@ -20,7 +20,7 @@ export const actions = {
 		const sum = Number(data.get('sum'))
 		const type = data.get('type') as 'fixed' | 'percent'
 
-		db.insert(tax)
+		db.insert(taxes)
 			.values({
 				date,
 				sum,
@@ -36,6 +36,6 @@ export const actions = {
 		const date = data.get('date') as string
 		const sum = Number(data.get('sum'))
 
-		db.update(tax).set({ date, sum }).where(eq(tax.id, id)).execute()
+		db.update(taxes).set({ date, sum }).where(eq(taxes.id, id)).execute()
 	},
 } satisfies Actions

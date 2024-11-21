@@ -1,4 +1,5 @@
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
+import type { InferSelectModel } from 'drizzle-orm'
 
 export const payments = sqliteTable('payments', {
 	id: integer('id').primaryKey(),
@@ -8,10 +9,4 @@ export const payments = sqliteTable('payments', {
 	originalCurrency: text('secondary_currency'),
 })
 
-export type Payment = {
-	id: number
-	sum: number
-	date: string
-	originalSum?: number
-	originalCurrency?: 'EUR' | 'USD'
-}
+export type Payment = InferSelectModel<typeof payments>
