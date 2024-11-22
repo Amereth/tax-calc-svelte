@@ -4,7 +4,7 @@
 	import { MONTHS } from '$lib/constants/month'
 	import type { Payment } from '$lib/server/schemas/payments'
 	import Summary from '$lib/components/summary.svelte'
-	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
+	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
 
 	const year = $derived($page.params.year)
 

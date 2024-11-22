@@ -2,8 +2,8 @@
 	import { page } from '$app/stores'
 	import EventForm from '$lib/components/eventForm.svelte'
 	import type { Tax, Event, Payment } from '$lib/server/schemas/types'
-	import { getCurrentYearValues } from '../../../utils/getCurrentYearValues'
-	import { getQuarterValues } from '../../../utils/getQuarterValues'
+	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
+	import { getQuarterValues } from '$lib/utils/getQuarterValues'
 
 	let year = $derived($page.params.year)
 
