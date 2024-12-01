@@ -4,7 +4,7 @@ import { users } from './schemas'
 import { eq } from 'drizzle-orm'
 import type { User } from './schemas/users'
 
-const SESSION_EXPIRATION_PERIOD = 1000 * 60 * 60 * 24 * 7
+export const SESSION_EXPIRATION_PERIOD = 1000 * 60 * 60 * 24 * 7
 
 export function generateSessionId(): Session['id'] {
 	const bytes = new Uint8Array(20)

@@ -18,14 +18,12 @@ export const actions = {
 	insert: async ({ request }) => {
 		const data = await request.formData()
 
-		db.insert(payments)
-			.values({
-				sum: Number(data.get('sum')),
-				date: data.get('date') as string,
-				originalCurrency: data.get('originalCurrency') as string,
-				originalSum: Number(data.get('originalSum')),
-			})
-			.execute()
+		await db.insert(payments).values({
+			sum: Number(data.get('sum')),
+			date: data.get('date') as string,
+			originalCurrency: data.get('originalCurrency') as string,
+			originalSum: Number(data.get('originalSum')),
+		})
 	},
 
 	update: async ({ request }) => {
