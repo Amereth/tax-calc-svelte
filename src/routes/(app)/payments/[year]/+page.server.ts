@@ -3,8 +3,15 @@ import { payments } from '$lib/server/schemas/payments'
 import { eq } from 'drizzle-orm'
 import type { PageServerLoad, Actions } from './$types'
 import { getPayments, getTaxes } from '$lib/server/utils'
+import { redirect } from '@sveltejs/kit'
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, cookies }) => {
+	const sessionId = cookies.get('sessionId')
+
+	if (!sessionId) {
+		redirect(307, '/auth')
+	}
+
 	const [payments, esvs, eps] = await Promise.all([
 		getPayments({ year: +params.year }),
 		getTaxes({ year: +params.year, name: 'esv' }),

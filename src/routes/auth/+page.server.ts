@@ -1,10 +1,26 @@
-import { createSession, generateSessionId, SESSION_EXPIRATION_PERIOD } from '$lib/server/auth'
+import {
+	createSession,
+	generateSessionId,
+	SESSION_EXPIRATION_PERIOD,
+	validateSession,
+} from '$lib/server/auth'
 import { db } from '$lib/server/db'
 import { users } from '$lib/server/schemas'
 import type { User } from '$lib/server/schemas/users'
-import type { Actions, Cookies } from '@sveltejs/kit'
+import { redirect, type Actions, type Cookies } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
+import type { PageServerLoad } from './$types'
+
+export const load: PageServerLoad = async ({ cookies }) => {
+	const sessionId = cookies.get('sessionId')
+
+	if (sessionId) {
+		const { session } = await validateSession(sessionId)
+
+		if (session) return redirect(307, '/')
+	}
+}
 
 const handleSession = async (userId: User['id'], cookies: Cookies) => {
 	const sessionId = generateSessionId()
@@ -17,6 +33,8 @@ const handleSession = async (userId: User['id'], cookies: Cookies) => {
 		path: '/',
 		maxAge: SESSION_EXPIRATION_PERIOD,
 	})
+
+	return redirect(307, '/')
 }
 
 export const actions = {
@@ -37,11 +55,11 @@ export const actions = {
 		const resp = await db
 			.insert(users)
 			.values({ email, passwordHash, salt })
-			.returning({ id: users.id })
+			.returning({ userId: users.id })
 
-		const user = resp[0]
+		const { userId } = resp[0]
 
-		handleSession(user.id, cookies)
+		await handleSession(userId, cookies)
 	},
 	signIn: async ({ request, cookies }) => {
 		const formData = await request.formData()
@@ -73,6 +91,6 @@ export const actions = {
 			}
 		}
 
-		handleSession(user.id, cookies)
+		await handleSession(user.id, cookies)
 	},
 } satisfies Actions
