@@ -99,6 +99,13 @@
       "when": 1733155404829,
       "tag": "0013_make-user_id-not-null-for-events",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1733156878317,
+      "tag": "0014_make-drop_events_and_rename_tmp_events",
+      "breakpoints": true
     }
   ]
 }
