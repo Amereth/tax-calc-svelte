@@ -4,7 +4,9 @@ import { users } from './users'
 
 export const sessions = sqliteTable('sessions', {
 	id: text('id').primaryKey(),
-	userId: integer('user_id').references(() => users.id),
+	userId: integer('user_id')
+		.notNull()
+		.references(() => users.id),
 	expiresAt: integer('expires_at', {
 		mode: 'timestamp',
 	}).notNull(),

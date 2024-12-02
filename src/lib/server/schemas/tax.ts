@@ -2,7 +2,7 @@ import type { InferSelectModel } from 'drizzle-orm'
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 import { users } from './users'
 
-export const taxes = sqliteTable('tax', {
+export const taxes = sqliteTable('taxes', {
 	id: integer('id').primaryKey(),
 	name: text('name').notNull(),
 	type: text('type').notNull().$type<'fixed' | 'percent'>(),
