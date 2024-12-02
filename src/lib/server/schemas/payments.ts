@@ -6,8 +6,8 @@ export const payments = sqliteTable('payments', {
 	id: integer('id').primaryKey(),
 	sum: integer('sum').notNull(),
 	date: text('date').notNull(),
-	originalSum: integer('secondary_sum'),
-	originalCurrency: text('secondary_currency'),
+	originalSum: integer('original_sum'),
+	originalCurrency: text('original_currency'),
 	userId: integer('user_id')
 		.notNull()
 		.references(() => users.id),
