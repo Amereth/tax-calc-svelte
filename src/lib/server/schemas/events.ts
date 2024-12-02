@@ -1,4 +1,5 @@
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
+import { users } from './users'
 
 export const events = sqliteTable('events', {
 	id: integer('id').primaryKey(),
@@ -8,6 +9,9 @@ export const events = sqliteTable('events', {
 	quarter: integer('quarter').notNull().$type<1 | 2 | 3 | 4>(),
 	doneDate: text('done_date'),
 	latestDoneDate: text('latest_done_date').notNull(),
+	userId: integer('user_id')
+		.notNull()
+		.references(() => users.id),
 })
 
 export type Event = {
