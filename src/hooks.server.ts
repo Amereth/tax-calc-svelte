@@ -9,9 +9,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	if (sessionCookie) {
-		const { session } = await validateSession(sessionCookie)
+		const { session, user } = await validateSession(sessionCookie)
 
-		if (session) return resolve(event)
+		if (session && user) {
+			event.locals.user = user
+			event.locals.session = session
+			return resolve(event)
+		}
 	}
 
 	return redirect(307, '/auth')
