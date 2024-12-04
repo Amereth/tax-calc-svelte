@@ -22,7 +22,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 }
 
 export const actions = {
-	insert: async ({ request }) => {
+	insert: async ({ request, locals }) => {
 		const data = await request.formData()
 
 		await db.insert(payments).values({
@@ -30,6 +30,7 @@ export const actions = {
 			date: data.get('date') as string,
 			originalCurrency: data.get('originalCurrency') as string,
 			originalSum: Number(data.get('originalSum')),
+			userId: locals.user.id,
 		})
 	},
 

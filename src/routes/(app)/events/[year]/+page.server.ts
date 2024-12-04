@@ -18,18 +18,17 @@ export const load: PageServerLoad = async ({ params }) => {
 }
 
 export const actions = {
-	insert: async ({ request }) => {
+	insert: async ({ request, locals }) => {
 		const formData = await request.formData()
 		const data = toObject(formData) as Event
 
-		const insertData = {
+		await db.insert(events).values({
 			...data,
 			year: Number(data.year),
 			quarter: Number(data.quarter) as Event['quarter'],
 			sum: Number(data.sum),
-		}
-
-		await db.insert(events).values(insertData)
+			userId: locals.user.id,
+		})
 	},
 	update: async ({ request }) => {
 		const formData = await request.formData()

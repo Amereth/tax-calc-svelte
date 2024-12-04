@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ params }) => {
 }
 
 export const actions = {
-	insert: async ({ request, params }) => {
+	insert: async ({ request, params, locals }) => {
 		const data = await request.formData()
 
 		const date = data.get('date') as string
@@ -26,6 +26,7 @@ export const actions = {
 				sum,
 				name: params.taxName as 'esv' | 'ep',
 				type,
+				userId: locals.user.id,
 			})
 			.execute()
 	},
