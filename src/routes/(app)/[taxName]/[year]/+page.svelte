@@ -5,6 +5,7 @@
 	import type { Tax } from '$lib/server/schemas/tax'
 
 	const { taxes } = $derived($page.data) as { taxes: Tax[] }
+
 	const year = $derived($page.params.year)
 </script>
 
@@ -15,13 +16,15 @@
 
 			if (taxYear === +year && taxMonth === index + 1) return true
 			return false
-		}) as Tax}
+		})}
 
-		<TaxMonth
-			date="{year}-{(index + 1).toString().padStart(2, '0')}"
-			id={tax.id}
-			sum={tax.sum}
-			type={tax.type}
-		/>
+		{#if tax}
+			<TaxMonth
+				date="{year}-{(index + 1).toString().padStart(2, '0')}"
+				id={tax.id}
+				sum={tax.sum}
+				type={tax.type}
+			/>
+		{/if}
 	{/each}
 </div>

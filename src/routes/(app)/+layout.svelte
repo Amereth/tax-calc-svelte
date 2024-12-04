@@ -7,6 +7,12 @@
 	let { children } = $props()
 
 	const { years } = $derived($page.data) as { years: string[] }
+
+	const signOut = async () => {
+		const resp = await fetch('/auth/signOut')
+
+		if (resp.ok) goto('/auth')
+	}
 </script>
 
 <header class="flex items-center gap-8">
@@ -29,6 +35,8 @@
 		<a class="link link-primary" href="/ep/{year}">ЄП</a>
 		<a class="link link-primary" href="/events/{year}">events</a>
 	</nav>
+
+	<button class="btn btn-primary btn-sm ml-auto" onclick={signOut}>sign out</button>
 </header>
 
 <main class="mt-8">

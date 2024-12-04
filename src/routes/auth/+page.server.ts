@@ -61,6 +61,7 @@ export const actions = {
 
 		await handleSession(userId, cookies)
 	},
+
 	signIn: async ({ request, cookies }) => {
 		const formData = await request.formData()
 
