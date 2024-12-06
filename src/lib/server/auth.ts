@@ -50,9 +50,7 @@ export async function validateSession(sessionId: Session['id']): Promise<Session
 		session.expiresAt = new Date(Date.now() + SESSION_EXPIRATION_PERIOD)
 		await db
 			.update(sessions)
-			.set({
-				expiresAt: session.expiresAt,
-			})
+			.set({ expiresAt: session.expiresAt })
 			.where(eq(sessions.id, session.id))
 	}
 
