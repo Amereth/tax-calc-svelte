@@ -1,10 +1,21 @@
 import { validateSession } from '$lib/server/auth'
-import { redirect, type Handle } from '@sveltejs/kit'
+import { error, redirect, type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-	const sessionCookie = event.cookies.get('sessionId')
+	const { request, cookies, url, locals } = event
 
-	if (event.url.pathname === '/auth') {
+	// CSRF protection
+	if (event.request.method !== 'GET') {
+		const origin = request.headers.get('origin')
+
+		if (origin !== process.env.ORIGIN) {
+			throw error(403, 'Forbidden')
+		}
+	}
+
+	const sessionCookie = cookies.get('sessionId')
+
+	if (url.pathname === '/auth') {
 		return resolve(event)
 	}
 
@@ -12,8 +23,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		const { session, user } = await validateSession(sessionCookie)
 
 		if (session && user) {
-			event.locals.user = user
-			event.locals.session = session
+			locals.user = user
+			locals.session = session
 			return resolve(event)
 		}
 	}
