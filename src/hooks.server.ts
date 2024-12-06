@@ -1,5 +1,6 @@
 import { validateSession } from '$lib/server/auth'
 import { error, redirect, type Handle } from '@sveltejs/kit'
+import { ORIGIN } from '$env/static/private'
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const { request, cookies, url, locals } = event
@@ -8,7 +9,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (event.request.method !== 'GET') {
 		const origin = request.headers.get('origin')
 
-		if (origin !== process.env.ORIGIN) {
+		if (origin !== ORIGIN) {
 			throw error(403, 'Forbidden')
 		}
 	}
