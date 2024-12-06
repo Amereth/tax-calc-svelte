@@ -1,8 +1,7 @@
-import { sessions, type Session } from './schemas/sessions'
+import { users, sessions } from './schemas'
+import type { User, Session } from './schemas/types'
 import { db } from './db'
-import { users } from './schemas'
 import { eq } from 'drizzle-orm'
-import type { User } from './schemas/users'
 
 export const SESSION_EXPIRATION_PERIOD = 1000 * 60 * 60 * 24 * 7
 
