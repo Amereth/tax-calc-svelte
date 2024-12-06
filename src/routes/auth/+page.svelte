@@ -1,7 +1,12 @@
 <script lang="ts">
-	import { ArrowRightIcon } from 'lucide-svelte'
+	import { ArrowRightIcon, EyeIcon, EyeClosedIcon } from 'lucide-svelte'
+	import { fade } from 'svelte/transition'
 
 	let isSignUp = $state(false)
+
+	let isPasswordVisible = $state(false)
+
+	let inputType = $derived(isPasswordVisible ? 'text' : 'password')
 </script>
 
 <main class="mt-8 h-full">
@@ -21,16 +26,36 @@
 			/>
 		</label>
 
-		<label class="flex flex-col gap-2">
-			password
+		<div class="flex flex-col gap-2">
+			<div class="flex items-center justify-between">
+				<label for="password">password</label>
+
+				<button
+					type="button"
+					class="relative h-6 w-6"
+					onclick={() => (isPasswordVisible = !isPasswordVisible)}
+				>
+					{#if isPasswordVisible}
+						<div transition:fade={{ duration: 150 }}>
+							<EyeIcon class="absolute left-0 top-0" />
+						</div>
+					{:else}
+						<div transition:fade={{ duration: 150 }}>
+							<EyeClosedIcon class="absolute left-0 top-0" />
+						</div>
+					{/if}
+				</button>
+			</div>
+
 			<input
-				type="password"
+				id="password"
+				type={inputType}
 				name="password"
 				class="input input-md input-bordered flex items-center gap-2"
 				autocomplete="new-password"
 				required
 			/>
-		</label>
+		</div>
 
 		<button type="submit" class="btn btn-primary">{isSignUp ? 'sign up' : 'sign in'}</button>
 
