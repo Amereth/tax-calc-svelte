@@ -21,3 +21,7 @@
 - add offline support
 
 - add offline mode
+
+- add multi-language support
+
+- add calendar view for events
