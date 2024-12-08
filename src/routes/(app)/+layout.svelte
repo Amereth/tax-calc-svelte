@@ -39,6 +39,6 @@
 	<button class="btn btn-primary btn-sm ml-auto" onclick={signOut}>sign out</button>
 </header>
 
-<main class="mt-8">
+<main class="mt-4">
 	{@render children()}
 </main>
