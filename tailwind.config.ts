@@ -7,5 +7,9 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [daisyui, skeleton],
+	daisyui: {
+		prefix: 'd-',
+	},
+	darkMode: 'class',
+	plugins: [daisyui],
 } satisfies Config as Config

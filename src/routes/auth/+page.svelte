@@ -6,7 +6,7 @@
 
 	let isPasswordVisible = $state(false)
 
-	let inputType = $derived(isPasswordVisible ? 'text' : 'password')
+	let d-inputType = $derived(isPasswordVisible ? 'text' : 'password')
 </script>
 
 <main class="mt-8 h-full">
@@ -20,7 +20,7 @@
 			<input
 				type="email"
 				name="email"
-				class="input input-md input-bordered flex items-center gap-2"
+				class="d-input-bordered d-input d-input-md flex items-center gap-2"
 				autocomplete="email"
 				required
 			/>
@@ -51,23 +51,25 @@
 				id="password"
 				type={inputType}
 				name="password"
-				class="input input-md input-bordered flex items-center gap-2"
+				class="d-input-bordered d-input d-input-md flex items-center gap-2"
 				autocomplete="new-password"
 				required
 			/>
 		</div>
 
-		<button type="submit" class="btn btn-primary">{isSignUp ? 'sign up' : 'sign in'}</button>
+		<button type="submit" class="d-btn d-btn-primary">{isSignUp ? 'sign up' : 'sign in'}</button>
 
 		<div class="mx-auto flex items-center gap-4">
 			{#if isSignUp}
 				<span> already have account? </span>
 				<ArrowRightIcon class="inline" />
-				<button class="link link-primary" onclick={() => (isSignUp = !isSignUp)}>sign in</button>
+				<button class="d-link d-link-primary" onclick={() => (isSignUp = !isSignUp)}>sign in</button
+				>
 			{:else}
 				<span> don't have an account yet? </span>
 				<ArrowRightIcon class="inline" />
-				<button class="link link-primary" onclick={() => (isSignUp = !isSignUp)}>sign up</button>
+				<button class="d-link d-link-primary" onclick={() => (isSignUp = !isSignUp)}>sign up</button
+				>
 			{/if}
 		</div>
 	</form>
