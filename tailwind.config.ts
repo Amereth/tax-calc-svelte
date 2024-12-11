@@ -11,5 +11,10 @@ export default {
 		prefix: 'd-',
 	},
 	darkMode: 'class',
-	plugins: [daisyui],
+	plugins: [
+		daisyui,
+		skeleton({
+			themes: { preset: ['wintry'] },
+		}),
+	],
 } satisfies Config as Config
