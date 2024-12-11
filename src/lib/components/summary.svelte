@@ -2,7 +2,7 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import { formatter } from '$lib/utils/formatter'
 
-	const { payments }: { payments: Payment[] } = $props()
+	const { payments, className }: { payments: Payment[]; className?: string } = $props()
 
 	const total = $derived(payments.reduce((acc, payment) => acc + payment.sum, 0))
 
@@ -21,18 +21,16 @@
 	)
 </script>
 
-<div>
-	<div class="mb-6 ml-4 flex gap-8 pr-12">
-		<span class="ml-auto">
-			{formatter('UAH').format(total)}
-		</span>
-		<span>/</span>
-		<span>
-			{formatter('EUR').format(totalEur)}
-		</span>
-		<span>-</span>
-		<span>
-			{formatter('USD').format(totalUsd)}
-		</span>
-	</div>
+<div class={`flex gap-8 ${className}`}>
+	<span class="ml-auto">
+		{formatter('UAH').format(total)}
+	</span>
+	<span>/</span>
+	<span>
+		{formatter('EUR').format(totalEur)}
+	</span>
+	<span>-</span>
+	<span>
+		{formatter('USD').format(totalUsd)}
+	</span>
 </div>

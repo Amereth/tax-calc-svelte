@@ -3,8 +3,11 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import { formatter } from '$lib/utils/formatter'
 	import { CheckIcon, XIcon, PenIcon } from 'lucide-svelte'
+	import { twMerge } from 'tailwind-merge'
 
 	const { month, payments }: { month: number; payments: Payment[] } = $props()
+
+	let open = $state(false)
 
 	const total = $derived(payments.reduce((acc, payment) => acc + payment.sum, 0))
 
@@ -22,8 +25,13 @@
 	let editedPayment: Payment['id'] | undefined = $state()
 </script>
 
-<div class="collapse rounded-xl border-[1px] border-primary bg-base-200">
-	<input type="checkbox" class="min-h-[40px]" />
+<div
+	class={twMerge(
+		'collapse rounded-xl border-[1px] border-base-200 bg-base-200 hover:border-primary',
+		open && 'border-primary',
+	)}
+>
+	<input type="checkbox" class="min-h-[40px]" bind:checked={open} />
 	<div class="text-md collapse-title flex min-h-[40px] justify-between py-2 font-medium">
 		<div>{MONTHS[month]}</div>
 		<div class="flex gap-8">

@@ -14,6 +14,8 @@
 </script>
 
 <div class="flex flex-col gap-2">
+	<Summary payments={currentYearPayments} className="mb-6 pr-12 ml-4" />
+
 	{#each MONTHS as month, index}
 		<Month
 			month={index}
@@ -27,15 +29,15 @@
 				return true
 			})}
 		/>
+
 		{#if (index + 1) % 3 === 0}
 			<Summary
 				payments={currentYearPayments.filter((payment) => {
 					const [_, month] = payment.date.split('-').map(Number)
 					return [index, index + 1, index - 1].includes(month)
 				})}
+				className="mb-6 pr-12 ml-4"
 			/>
 		{/if}
 	{/each}
-
-	<Summary payments={currentYearPayments} />
 </div>
