@@ -7,10 +7,12 @@ export const payments = sqliteTable('payments', {
 	sum: integer('sum').notNull(),
 	date: text('date').notNull(),
 	originalSum: integer('original_sum'),
-	originalCurrency: text('original_currency'),
+	originalCurrency: text('original_currency').$type<'EUR' | 'USD'>(),
 	userId: integer('user_id')
 		.notNull()
 		.references(() => users.id),
 })
 
 export type Payment = InferSelectModel<typeof payments>
+
+export type OriginalCurrency = Payment['originalCurrency']

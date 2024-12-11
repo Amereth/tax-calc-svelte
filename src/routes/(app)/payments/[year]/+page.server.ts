@@ -1,5 +1,5 @@
 import { db } from '$lib/server/db'
-import { payments } from '$lib/server/schemas/payments'
+import { payments, type OriginalCurrency } from '$lib/server/schemas/payments'
 import { eq } from 'drizzle-orm'
 import type { PageServerLoad, Actions } from './$types'
 import { getPayments, getTaxes } from '$lib/server/utils'
@@ -28,7 +28,7 @@ export const actions = {
 		await db.insert(payments).values({
 			sum: Number(data.get('sum')),
 			date: data.get('date') as string,
-			originalCurrency: data.get('originalCurrency') as string,
+			originalCurrency: data.get('originalCurrency') as OriginalCurrency,
 			originalSum: Number(data.get('originalSum')),
 			userId: locals.user.id,
 		})
@@ -43,7 +43,7 @@ export const actions = {
 			.set({
 				sum: Number(data.get('sum')),
 				date: data.get('date') as string,
-				originalCurrency: data.get('originalCurrency') as string,
+				originalCurrency: data.get('originalCurrency') as OriginalCurrency,
 				originalSum: Number(data.get('originalSum')),
 			})
 			.where(eq(payments.id, Number(id)))
