@@ -7,5 +7,5 @@ export const getPayments = ({ year }: { year?: number } = {}) =>
 		? db
 				.select()
 				.from(payments)
-				.where(between(payments.date, `${year}-01`, `${year}-12`))
+				.where(between(payments.date, `${year}-01-01`, `${year}-12-31`))
 		: db.select().from(payments)
