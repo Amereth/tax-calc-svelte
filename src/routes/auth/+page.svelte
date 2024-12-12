@@ -6,7 +6,7 @@
 
 	let isPasswordVisible = $state(false)
 
-	let d-inputType = $derived(isPasswordVisible ? 'text' : 'password')
+	let inputType = $derived(isPasswordVisible ? 'text' : 'password')
 </script>
 
 <main class="mt-8 h-full">
@@ -20,7 +20,7 @@
 			<input
 				type="email"
 				name="email"
-				class="d-input-bordered d-input d-input-md flex items-center gap-2"
+				class="d-input d-input-md d-input-bordered flex items-center gap-2"
 				autocomplete="email"
 				required
 			/>
@@ -51,7 +51,7 @@
 				id="password"
 				type={inputType}
 				name="password"
-				class="d-input-bordered d-input d-input-md flex items-center gap-2"
+				class="d-input d-input-md d-input-bordered flex items-center gap-2"
 				autocomplete="new-password"
 				required
 			/>
