@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 import daisyui from 'daisyui'
 import { skeleton } from '@skeletonlabs/tw-plugin'
-import { theme } from './src/configs/theme'
+import forms from '@tailwindcss/forms'
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -13,6 +13,7 @@ export default {
 	},
 	darkMode: 'class',
 	plugins: [
+		forms,
 		daisyui,
 		skeleton({
 			themes: {
