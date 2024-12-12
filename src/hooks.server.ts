@@ -16,7 +16,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	const sessionCookie = cookies.get('sessionId')
 
-	if (url.pathname === '/auth') {
+	if (url.pathname.includes('auth')) {
 		return resolve(event)
 	}
 
