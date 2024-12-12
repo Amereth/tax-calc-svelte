@@ -6,7 +6,13 @@
 <form class="flex flex-col gap-10" action="?/signUp" method="post">
 	<label class="flex flex-col gap-2">
 		email
-		<input type="email" name="email" class="input" autocomplete="email" required />
+		<input
+			type="email"
+			name="email"
+			class="input"
+			autocomplete="email"
+			required
+		/>
 	</label>
 
 	<PasswordInput name="password" autocomplete="new-password" required />

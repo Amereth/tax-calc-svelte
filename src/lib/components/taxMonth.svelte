@@ -35,14 +35,18 @@
 		<input
 			name="sum"
 			value={sum}
-			class="d-input-sm d-input-bordered d-input-primary d-input w-40 text-center text-xl"
+			class="d-input d-input-sm d-input-bordered d-input-primary w-40 text-center text-xl"
 		/>
 
 		<div>
 			<button class="d-btn d-btn-square d-btn-sm" type="submit">
 				<CheckIcon size="16" />
 			</button>
-			<button class="d-btn d-btn-square d-btn-sm" type="reset" onclick={() => (isEdited = false)}>
+			<button
+				class="d-btn d-btn-square d-btn-sm"
+				type="reset"
+				onclick={() => (isEdited = false)}
+			>
 				<XIcon size="16" />
 			</button>
 		</div>

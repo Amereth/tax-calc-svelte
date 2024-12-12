@@ -1,5 +1,9 @@
 <script lang="ts">
-	let { value, name, className }: { value?: number; name: string; className?: string } = $props()
+	let {
+		value,
+		name,
+		className,
+	}: { value?: number; name: string; className?: string } = $props()
 </script>
 
 <input

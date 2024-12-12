@@ -79,7 +79,10 @@ export const actions = {
 		if (!user?.salt) {
 			return {
 				status: 400,
-				body: { error: 'invalid email or password or only passwordless entry is supported' },
+				body: {
+					error:
+						'invalid email or password or only passwordless entry is supported',
+				},
 			}
 		}
 
@@ -88,7 +91,10 @@ export const actions = {
 		if (passwordHash !== user.passwordHash) {
 			return {
 				status: 400,
-				body: { error: 'invalid email or password or only passwordless entry is supported' },
+				body: {
+					error:
+						'invalid email or password or only passwordless entry is supported',
+				},
 			}
 		}
 

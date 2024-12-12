@@ -25,7 +25,11 @@
 	} = $props()
 </script>
 
-<form class="flex flex-col gap-2" method="post" action="?/{id ? 'update' : 'insert'}">
+<form
+	class="flex flex-col gap-2"
+	method="post"
+	action="?/{id ? 'update' : 'insert'}"
+>
 	<div class="ml-2">{eventLabel}</div>
 
 	{#if id}
@@ -36,25 +40,33 @@
 	<input type="hidden" value={quarter} name="quarter" />
 	<input type="hidden" value={type} name="type" />
 
-	<label class="d-input-sm d-input-bordered d-input flex items-center gap-2">
+	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
 		сума
 		<MinSizeInput value={sum} name="sum" className="ml-auto" />
 	</label>
 
-	<label class="d-input-sm d-input-bordered d-input flex items-center gap-2">
+	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
 		дата
 		<input type="date" value={doneDate} name="doneDate" class="ml-auto" />
 	</label>
 
-	<label class="d-input-sm d-input-bordered d-input flex items-center gap-2">
+	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
 		гранична дата
-		<input type="date" value={latestDoneDate} name="latestDoneDate" class="ml-auto" />
+		<input
+			type="date"
+			value={latestDoneDate}
+			name="latestDoneDate"
+			class="ml-auto"
+		/>
 	</label>
 
 	<div class="flex items-center px-2">
 		<EventLabel {doneDate} {latestDoneDate} />
 
-		<button type="submit" class="d-btn d-btn-square d-btn-outline d-btn-success d-btn-sm ml-auto">
+		<button
+			type="submit"
+			class="d-btn d-btn-square d-btn-outline d-btn-success d-btn-sm ml-auto"
+		>
 			<CheckIcon size="16" />
 		</button>
 	</div>

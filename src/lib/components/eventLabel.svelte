@@ -15,11 +15,17 @@
 
 	const now = new Date()
 
-	const isLastDayToday = $derived(latestDoneDate && sameDay(now, latestDoneDate))
+	const isLastDayToday = $derived(
+		latestDoneDate && sameDay(now, latestDoneDate),
+	)
 
-	const isTooLate = $derived(latestDoneDate && dayEnd(now) > dayEnd(latestDoneDate))
+	const isTooLate = $derived(
+		latestDoneDate && dayEnd(now) > dayEnd(latestDoneDate),
+	)
 
-	const diffInDays = $derived(latestDoneDate && diffDays(dayEnd(latestDoneDate), dayEnd(now)))
+	const diffInDays = $derived(
+		latestDoneDate && diffDays(dayEnd(latestDoneDate), dayEnd(now)),
+	)
 </script>
 
 {#if doneDate}

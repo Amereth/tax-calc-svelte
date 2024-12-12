@@ -9,7 +9,9 @@
 
 	let open = $state(false)
 
-	const total = $derived(payments.reduce((acc, payment) => acc + payment.sum, 0))
+	const total = $derived(
+		payments.reduce((acc, payment) => acc + payment.sum, 0),
+	)
 
 	const totalOriginal = $derived(
 		payments.reduce(
@@ -32,7 +34,9 @@
 	)}
 >
 	<input type="checkbox" class="min-h-[40px]" bind:checked={open} />
-	<div class="text-md d-collapse-title flex min-h-[40px] justify-between py-2 font-medium">
+	<div
+		class="text-md d-collapse-title flex min-h-[40px] justify-between py-2 font-medium"
+	>
 		<div>{MONTHS[month]}</div>
 		<div class="flex gap-8">
 			<span>
@@ -78,30 +82,36 @@
 			<input
 				name="sum"
 				type="text"
-				class="d-input-sm d-input-bordered d-input-primary d-input block w-full"
+				class="d-input d-input-sm d-input-bordered d-input-primary block w-full"
 				required
-				value={editedPayment ? payments.find((payment) => payment.id === editedPayment)?.sum : ''}
+				value={editedPayment
+					? payments.find((payment) => payment.id === editedPayment)?.sum
+					: ''}
 			/>
 			<input
 				name="date"
 				type="date"
-				class="d-input-sm d-input-bordered d-input-primary d-input block w-full"
+				class="d-input d-input-sm d-input-bordered d-input-primary block w-full"
 				required
-				value={editedPayment ? payments.find((payment) => payment.id === editedPayment)?.date : ''}
+				value={editedPayment
+					? payments.find((payment) => payment.id === editedPayment)?.date
+					: ''}
 			/>
 			<input
 				name="originalSum"
 				type="text"
-				class="d-input-sm d-input-bordered d-input-primary d-input block w-full"
+				class="d-input d-input-sm d-input-bordered d-input-primary block w-full"
 				value={editedPayment
-					? payments.find((payment) => payment.id === editedPayment)?.originalSum
+					? payments.find((payment) => payment.id === editedPayment)
+							?.originalSum
 					: ''}
 			/>
 			<select
 				name="originalCurrency"
-				class="d-select d-select-sm d-select-bordered"
+				class="d-select d-select-bordered d-select-sm"
 				value={editedPayment
-					? payments.find((payment) => payment.id === editedPayment)?.originalCurrency
+					? payments.find((payment) => payment.id === editedPayment)
+							?.originalCurrency
 					: ''}
 			>
 				<option value="EUR">EUR</option>

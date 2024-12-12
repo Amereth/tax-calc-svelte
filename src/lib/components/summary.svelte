@@ -2,20 +2,27 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import { formatter } from '$lib/utils/formatter'
 
-	const { payments, className }: { payments: Payment[]; className?: string } = $props()
+	const { payments, className }: { payments: Payment[]; className?: string } =
+		$props()
 
-	const total = $derived(payments.reduce((acc, payment) => acc + payment.sum, 0))
+	const total = $derived(
+		payments.reduce((acc, payment) => acc + payment.sum, 0),
+	)
 
 	const totalEur = $derived(
 		payments.reduce(
-			(acc, payment) => acc + (payment.originalCurrency === 'EUR' ? payment.originalSum || 0 : 0),
+			(acc, payment) =>
+				acc +
+				(payment.originalCurrency === 'EUR' ? payment.originalSum || 0 : 0),
 			0,
 		),
 	)
 
 	const totalUsd = $derived(
 		payments.reduce(
-			(acc, payment) => acc + (payment.originalCurrency === 'USD' ? payment.originalSum || 0 : 0),
+			(acc, payment) =>
+				acc +
+				(payment.originalCurrency === 'USD' ? payment.originalSum || 0 : 0),
 			0,
 		),
 	)

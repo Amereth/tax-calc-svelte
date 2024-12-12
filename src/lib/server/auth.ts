@@ -28,7 +28,9 @@ export async function createSession(
 	return session
 }
 
-export async function validateSession(sessionId: Session['id']): Promise<SessionValidationResult> {
+export async function validateSession(
+	sessionId: Session['id'],
+): Promise<SessionValidationResult> {
 	const result = await db
 		.select({ user: users, session: sessions })
 		.from(sessions)
@@ -46,7 +48,10 @@ export async function validateSession(sessionId: Session['id']): Promise<Session
 		return { session: null, user: null }
 	}
 
-	if (Date.now() >= session.expiresAt.getTime() - SESSION_EXPIRATION_PERIOD / 2) {
+	if (
+		Date.now() >=
+		session.expiresAt.getTime() - SESSION_EXPIRATION_PERIOD / 2
+	) {
 		session.expiresAt = new Date(Date.now() + SESSION_EXPIRATION_PERIOD)
 		await db
 			.update(sessions)
@@ -57,7 +62,9 @@ export async function validateSession(sessionId: Session['id']): Promise<Session
 	return { session, user }
 }
 
-export async function invalidateSession(sessionId: Session['id']): Promise<void> {
+export async function invalidateSession(
+	sessionId: Session['id'],
+): Promise<void> {
 	await db.delete(sessions).where(eq(sessions.id, sessionId))
 }
 
