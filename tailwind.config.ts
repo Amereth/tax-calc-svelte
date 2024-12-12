@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import daisyui from 'daisyui'
 import { skeleton } from '@skeletonlabs/tw-plugin'
+import { theme } from './src/configs/theme'
 
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
@@ -14,7 +15,9 @@ export default {
 	plugins: [
 		daisyui,
 		skeleton({
-			themes: { preset: ['wintry'] },
+			themes: {
+				custom: [theme],
+			},
 		}),
 	],
 } satisfies Config as Config
