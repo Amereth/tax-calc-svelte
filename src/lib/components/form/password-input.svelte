@@ -4,7 +4,11 @@
 	import { fade } from 'svelte/transition'
 	import { twMerge } from 'tailwind-merge'
 
-	const { name, class: className }: HTMLInputAttributes = $props()
+	let {
+		name,
+		class: className,
+		value = $bindable(),
+	}: HTMLInputAttributes = $props()
 
 	let isPasswordVisible = $state(false)
 
@@ -32,5 +36,5 @@
 		</button>
 	</div>
 
-	<input id="password" type={inputType} {name} class="input" />
+	<input id="password" type={inputType} {name} class="input" bind:value />
 </div>
