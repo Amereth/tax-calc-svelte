@@ -5,17 +5,20 @@
 	import { twMerge } from 'tailwind-merge'
 
 	let {
-		name,
-		class: className,
 		value = $bindable(),
-	}: HTMLInputAttributes = $props()
+		errors,
+		class: className,
+		...props
+	}: HTMLInputAttributes & {
+		errors?: string[]
+	} = $props()
 
 	let isPasswordVisible = $state(false)
 
 	let inputType = $derived(isPasswordVisible ? 'text' : 'password')
 </script>
 
-<div class={twMerge('flex flex-col gap-2', className)}>
+<div class="flex flex-col gap-2">
 	<div class="flex items-center justify-between">
 		<label class="label" for="password">password</label>
 
@@ -36,5 +39,19 @@
 		</button>
 	</div>
 
-	<input id="password" type={inputType} {name} class="input" bind:value />
+	<input
+		id="password"
+		type={inputType}
+		class={twMerge('input', className)}
+		bind:value
+		{...props}
+	/>
+
+	{#if errors?.length}
+		<div class="flex flex-col gap-1">
+			{#each errors as error}
+				<span>{error}</span>
+			{/each}
+		</div>
+	{/if}
 </div>

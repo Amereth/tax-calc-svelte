@@ -10,7 +10,9 @@ import type { User } from '$lib/server/schemas/users'
 import { redirect, type Actions, type Cookies } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
-
+import { fail, message, superValidate } from 'sveltekit-superforms'
+import { valibot } from 'sveltekit-superforms/adapters'
+import { signInSchema } from '../schemas'
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ cookies }) => {
@@ -21,6 +23,10 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 		if (session) return redirect(307, '/')
 	}
+
+	const form = await superValidate(valibot(signInSchema))
+
+	return { form }
 }
 
 const handleSession = async (userId: User['id'], cookies: Cookies) => {
@@ -40,39 +46,30 @@ const handleSession = async (userId: User['id'], cookies: Cookies) => {
 
 export const actions = {
 	default: async ({ request, cookies }) => {
-		const formData = await request.formData()
+		const form = await superValidate(request, valibot(signInSchema))
 
-		const email = formData.get('email') as string
-		const password = formData.get('password') as string
+		if (!form.valid) return fail(400, { form })
 
-		if (!email || !password) {
-			return { status: 400, body: { error: 'Email and password are required' } }
-		}
+		const { email, password } = form.data
 
 		const user = await db.query.users.findFirst({
 			where: eq(users.email, email),
 		})
 
 		if (!user?.salt) {
-			return {
-				status: 400,
-				body: {
-					error:
-						'invalid email or password or only passwordless entry is supported',
-				},
-			}
+			return message(
+				form,
+				'invalid email or password or only passwordless entry is supported',
+			)
 		}
 
 		const passwordHash = await bcrypt.hash(password, user.salt)
 
 		if (passwordHash !== user.passwordHash) {
-			return {
-				status: 400,
-				body: {
-					error:
-						'invalid email or password or only passwordless entry is supported',
-				},
-			}
+			return message(
+				form,
+				'invalid email or password or only passwordless entry is supported',
+			)
 		}
 
 		await handleSession(user.id, cookies)

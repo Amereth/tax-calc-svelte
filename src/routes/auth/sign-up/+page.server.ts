@@ -12,7 +12,7 @@ import bcrypt from 'bcrypt'
 import type { PageServerLoad } from './$types'
 import { superValidate } from 'sveltekit-superforms'
 import { valibot } from 'sveltekit-superforms/adapters'
-import { passwordSchema } from '../schemas'
+import { signInSchema } from '../schemas'
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const sessionId = cookies.get('sessionId')
@@ -23,7 +23,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 		if (session) return redirect(307, '/')
 	}
 
-	const form = await superValidate(valibot(passwordSchema))
+	const form = await superValidate(valibot(signInSchema))
 
 	return { form }
 }
