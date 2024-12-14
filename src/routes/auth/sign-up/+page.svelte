@@ -3,16 +3,10 @@
 	import PasswordInput from '$lib/components/form/password-input.svelte'
 </script>
 
-<form class="flex flex-col gap-10" action="?/signUp" method="post">
+<form class="flex flex-col gap-10" method="post">
 	<label class="flex flex-col gap-2">
 		email
-		<input
-			type="email"
-			name="email"
-			class="input"
-			autocomplete="email"
-			required
-		/>
+		<input type="email" name="email" class="input" autocomplete="email" />
 	</label>
 
 	<PasswordInput name="password" autocomplete="new-password" required />
