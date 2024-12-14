@@ -10,6 +10,7 @@ import type { User } from '$lib/server/schemas/users'
 import { redirect, type Actions, type Cookies } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import { eq } from 'drizzle-orm'
+
 import type { PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ cookies }) => {
@@ -38,31 +39,7 @@ const handleSession = async (userId: User['id'], cookies: Cookies) => {
 }
 
 export const actions = {
-	signUp: async ({ request, cookies }) => {
-		const formData = await request.formData()
-
-		const email = formData.get('email') as string
-		const password = formData.get('password') as string
-
-		if (!email || !password) {
-			return { status: 400, body: { error: 'Email and password are required' } }
-		}
-
-		const salt = await bcrypt.genSalt(10)
-
-		const passwordHash = await bcrypt.hash(password, salt)
-
-		const resp = await db
-			.insert(users)
-			.values({ email, passwordHash, salt })
-			.returning({ userId: users.id })
-
-		const { userId } = resp[0]
-
-		await handleSession(userId, cookies)
-	},
-
-	signIn: async ({ request, cookies }) => {
+	default: async ({ request, cookies }) => {
 		const formData = await request.formData()
 
 		const email = formData.get('email') as string
