@@ -4,7 +4,7 @@ import { users } from '$lib/server/schemas'
 import { redirect, type Actions } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import type { PageServerLoad } from './$types'
-import { superValidate } from 'sveltekit-superforms'
+import { fail, superValidate } from 'sveltekit-superforms'
 import { valibot } from 'sveltekit-superforms/adapters'
 import { signInSchema } from '../schemas'
 import { handleSession } from '../(utils)/handleSession'
@@ -25,14 +25,11 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions = {
 	default: async ({ request, cookies }) => {
-		const formData = await request.formData()
+		const form = await superValidate(request, valibot(signInSchema))
 
-		const email = formData.get('email') as string
-		const password = formData.get('password') as string
+		if (!form.valid) return fail(400, { form })
 
-		if (!email || !password) {
-			return { status: 400, body: { error: 'Email and password are required' } }
-		}
+		const { email, password } = form.data
 
 		const salt = await bcrypt.genSalt(10)
 

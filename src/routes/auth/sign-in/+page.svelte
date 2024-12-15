@@ -23,11 +23,11 @@
 			email
 			<input
 				name="email"
-				bind:value={$form.email}
 				type="email"
+				bind:value={$form.email}
 				class={twMerge('input', $errors.email && 'input-error')}
-				autocomplete="email"
 				aria-invalid={$errors.email ? 'true' : undefined}
+				autocomplete="email"
 				{...$constraints.email}
 			/>
 			{#if $errors.email}<span class="invalid">{$errors.email}</span>{/if}
@@ -37,10 +37,9 @@
 			name="password"
 			bind:value={$form.password}
 			errors={$errors.password}
+			class={$errors.password && 'input-error'}
 			aria-invalid={$errors.password ? 'true' : undefined}
 			{...$constraints.password}
-			class={$errors.password && 'input-error'}
-			autocomplete="new-password"
 		/>
 
 		<button type="submit" class="variant-filled-primary btn">sign in</button>

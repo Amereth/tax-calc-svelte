@@ -1,15 +1,42 @@
 <script lang="ts">
 	import { ArrowRightIcon } from 'lucide-svelte'
 	import PasswordInput from '$lib/components/form/password-input.svelte'
+	import { superForm } from 'sveltekit-superforms'
+	import type { SignInSchema } from '../schemas'
+	import { page } from '$app/stores'
+	import { twMerge } from 'tailwind-merge'
+
+	const { form, errors, constraints, message, enhance } =
+		superForm<SignInSchema>($page.data.form)
 </script>
 
-<form class="flex flex-col gap-10" method="post">
+<form class="flex flex-col gap-10" method="post" use:enhance>
+	{#if $message}
+		<h3 class="mt-10 text-center text-3xl text-error">{$message}</h3>
+	{/if}
+
 	<label class="flex flex-col gap-2">
 		email
-		<input type="email" name="email" class="input" autocomplete="email" />
+		<input
+			name="email"
+			type="email"
+			bind:value={$form.email}
+			class={twMerge('input', $errors.email && 'input-error')}
+			aria-invalid={$errors.email ? 'true' : undefined}
+			autocomplete="email"
+			{...$constraints.email}
+		/>
 	</label>
 
-	<PasswordInput name="password" autocomplete="new-password" required />
+	<PasswordInput
+		name="password"
+		bind:value={$form.password}
+		errors={$errors.password}
+		class={$errors.password && 'input-error'}
+		aria-invalid={$errors.password ? 'true' : undefined}
+		{...$constraints.password}
+		autocomplete="new-password"
+	/>
 
 	<button type="submit" class="variant-filled-primary btn">sign up</button>
 
