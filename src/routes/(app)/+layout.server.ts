@@ -1,7 +1,7 @@
 import { getYears } from '$lib/server/utils/getYears'
-import type { PageServerLoad } from './payments/[year]/$types'
+import type { LayoutServerLoad } from './$types'
 
-export const load: PageServerLoad = async () => {
+export const load: LayoutServerLoad = async () => {
 	const years = await getYears()
 
 	return { years }
