@@ -17,6 +17,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const sessionCookie = cookies.get('sessionId')
 
 	if (url.pathname.includes('auth')) {
+		console.log('1:', url.pathname)
 		return resolve(event)
 	}
 
@@ -30,5 +31,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
-	return redirect(307, '/auth')
+	return redirect(307, '/auth/sign-in')
 }

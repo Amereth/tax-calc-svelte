@@ -7,7 +7,7 @@ import type { PageServerLoad } from './$types'
 import { fail, superValidate } from 'sveltekit-superforms'
 import { valibot } from 'sveltekit-superforms/adapters'
 import { signInSchema } from '../schemas'
-import { handleSession } from '../(utils)/handleSession'
+import { handleSession } from '../(_utils)/handleSession'
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const sessionId = cookies.get('sessionId')

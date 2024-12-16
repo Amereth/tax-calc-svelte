@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ArrowRightIcon } from 'lucide-svelte'
 	import PasswordInput from '$lib/components/form/password-input.svelte'
-	import Links from '../(components)/links.svelte'
+	import Links from '../(_components)/links.svelte'
 	import { superForm } from 'sveltekit-superforms'
 	import { page } from '$app/stores'
 	import { twMerge } from 'tailwind-merge'
