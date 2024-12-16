@@ -5,6 +5,7 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import Summary from '$lib/components/summary.svelte'
 	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
+	import { Accordion } from '@skeletonlabs/skeleton'
 
 	const year = $derived($page.params.year)
 
@@ -14,21 +15,28 @@
 </script>
 
 <div class="flex flex-col gap-2">
-	<Summary payments={currentYearPayments} className="mb-6 pr-12 ml-4" />
+	<Summary
+		payments={currentYearPayments}
+		className="mb-6 text-primary pr-6 ml-4"
+	/>
 
 	{#each MONTHS as month, index}
-		<Month
-			month={index}
-			payments={currentYearPayments.filter((payment) => {
-				const [paymentYear, paymentMonth] = payment.date.split('-').map(Number)
+		<Accordion>
+			<Month
+				month={index}
+				payments={currentYearPayments.filter((payment) => {
+					const [paymentYear, paymentMonth] = payment.date
+						.split('-')
+						.map(Number)
 
-				if (paymentYear !== +year) return false
+					if (paymentYear !== +year) return false
 
-				if (paymentMonth !== index + 1) return false
+					if (paymentMonth !== index + 1) return false
 
-				return true
-			})}
-		/>
+					return true
+				})}
+			/>
+		</Accordion>
 
 		{#if (index + 1) % 3 === 0}
 			<Summary
@@ -36,7 +44,7 @@
 					const [_, month] = payment.date.split('-').map(Number)
 					return [index, index + 1, index - 1].includes(month)
 				})}
-				className="mb-6 pr-12 ml-4"
+				className="mb-6 mt-2 text-primary pr-6 ml-4"
 			/>
 		{/if}
 	{/each}
