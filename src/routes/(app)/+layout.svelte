@@ -18,7 +18,7 @@
 <header class="flex items-center gap-8">
 	<select
 		bind:value={year}
-		class="d-d-select-bordered d-select d-select-sm"
+		class="select variant-outline-primary w-min"
 		onchange={() => {
 			const url = $page.url.pathname.slice(0, -5)
 			goto(`${url}/${year}`)
@@ -36,7 +36,7 @@
 		<a class="d-link d-link-primary" href="/events/{year}">events</a>
 	</nav>
 
-	<button class="d-btn d-btn-primary d-btn-sm ml-auto" onclick={signOut}
+	<button class="variant-outline-primary btn btn-sm ml-auto" onclick={signOut}
 		>sign out</button
 	>
 </header>
