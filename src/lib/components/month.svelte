@@ -29,7 +29,7 @@
 
 <div
 	class={twMerge(
-		'd-collapse rounded-xl border-[1px] border-base-200 bg-base-200 hover:border-primary',
+		'd-collapse rounded-xl border-b-[1px] border-t-0 border-primary-200 hover:border-primary',
 		open && 'border-primary',
 	)}
 >
