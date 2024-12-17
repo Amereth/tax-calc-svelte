@@ -25,3 +25,5 @@
 - add multi-language support
 
 - add calendar view for events
+
+- add rate limiter
