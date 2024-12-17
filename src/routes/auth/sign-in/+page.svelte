@@ -11,43 +11,41 @@
 		superForm<SignInSchema>(page.data.form)
 </script>
 
-<div>
-	<Links passwordless={false} />
+<Links passwordless={false} />
 
-	{#if $message}
-		<h3 class="mt-10 text-center text-3xl text-error">{$message}</h3>
-	{/if}
+{#if $message}
+	<h3 class="mt-10 text-center text-3xl text-error">{$message}</h3>
+{/if}
 
-	<form class="mt-20 flex flex-col gap-10" method="post" use:enhance>
-		<label class="flex flex-col gap-2">
-			email
-			<input
-				name="email"
-				type="email"
-				bind:value={$form.email}
-				class={twMerge('input', $errors.email && 'input-error')}
-				aria-invalid={$errors.email ? 'true' : undefined}
-				autocomplete="email"
-				{...$constraints.email}
-			/>
-			{#if $errors.email}<span class="invalid">{$errors.email}</span>{/if}
-		</label>
-
-		<PasswordInput
-			name="password"
-			bind:value={$form.password}
-			errors={$errors.password}
-			class={$errors.password && 'input-error'}
-			aria-invalid={$errors.password ? 'true' : undefined}
-			{...$constraints.password}
+<form class="mt-20 flex flex-col gap-10" method="post" use:enhance>
+	<label class="flex flex-col gap-2">
+		email
+		<input
+			name="email"
+			type="email"
+			bind:value={$form.email}
+			class={twMerge('input', $errors.email && 'input-error')}
+			aria-invalid={$errors.email ? 'true' : undefined}
+			autocomplete="email"
+			{...$constraints.email}
 		/>
+		{#if $errors.email}<span class="invalid">{$errors.email}</span>{/if}
+	</label>
 
-		<button type="submit" class="variant-filled-primary btn">sign in</button>
+	<PasswordInput
+		name="password"
+		bind:value={$form.password}
+		errors={$errors.password}
+		class={$errors.password && 'input-error'}
+		aria-invalid={$errors.password ? 'true' : undefined}
+		{...$constraints.password}
+	/>
 
-		<div class="mx-auto flex items-center gap-4">
-			<span> don't have an account yet? </span>
-			<ArrowRightIcon class="inline" />
-			<a class="d-link d-link-primary" href="/auth/sign-up">sign up</a>
-		</div>
-	</form>
-</div>
+	<button type="submit" class="variant-filled-primary btn">sign in</button>
+
+	<div class="mx-auto flex items-center gap-4">
+		<span> don't have an account yet? </span>
+		<ArrowRightIcon class="inline" />
+		<a class="d-link d-link-primary" href="/auth/sign-up">sign up</a>
+	</div>
+</form>

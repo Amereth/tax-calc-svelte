@@ -41,6 +41,6 @@
 	>
 </header>
 
-<main class="mt-4">
+<main class="mt-4 grow">
 	{@render children()}
 </main>
