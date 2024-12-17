@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import EventForm from '$lib/components/eventForm.svelte'
 	import type { Tax, Event, Payment } from '$lib/server/schemas/types'
 	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
 	import { getQuarterValues } from '$lib/utils/getQuarterValues'
 
-	let year = $derived($page.params.year)
+	let year = $derived(page.params.year)
 
-	let { payments, esvs, eps, events } = $derived($page.data) as {
+	let { payments, esvs, eps, events } = $derived(page.data) as {
 		payments: Payment[]
 		esvs: Tax[]
 		eps: Tax[]

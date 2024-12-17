@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import TaxMonth from '$lib/components/taxMonth.svelte'
 	import { MONTHS } from '$lib/constants/month'
 	import type { Tax } from '$lib/server/schemas/tax'
 
-	const { taxes } = $derived($page.data) as { taxes: Tax[] }
+	const { taxes } = $derived(page.data) as { taxes: Tax[] }
 
-	const year = $derived($page.params.year)
+	const year = $derived(page.params.year)
 </script>
 
 <div class="flex flex-col items-center gap-2">

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { goto } from '$app/navigation'
 
-	let year = $state($page.params.year)
+	let year = $state(page.params.year)
 
 	let { children } = $props()
 
-	const { years } = $derived($page.data) as { years: string[] }
+	const { years } = $derived(page.data) as { years: string[] }
 
 	const signOut = async () => {
 		const resp = await fetch('/auth/signOut')
@@ -20,7 +20,7 @@
 		bind:value={year}
 		class="select variant-outline-primary w-min"
 		onchange={() => {
-			const url = $page.url.pathname.slice(0, -5)
+			const url = page.url.pathname.slice(0, -5)
 			goto(`${url}/${year}`)
 		}}
 	>

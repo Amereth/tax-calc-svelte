@@ -3,12 +3,12 @@
 	import PasswordInput from '$lib/components/form/password-input.svelte'
 	import Links from '../(_components)/links.svelte'
 	import { superForm } from 'sveltekit-superforms'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { twMerge } from 'tailwind-merge'
 	import type { SignInSchema } from '../schemas'
 
 	const { form, errors, constraints, message, enhance } =
-		superForm<SignInSchema>($page.data.form)
+		superForm<SignInSchema>(page.data.form)
 </script>
 
 <div>

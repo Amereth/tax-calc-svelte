@@ -3,11 +3,11 @@
 	import PasswordInput from '$lib/components/form/password-input.svelte'
 	import { superForm } from 'sveltekit-superforms'
 	import type { SignInSchema } from '../schemas'
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import { twMerge } from 'tailwind-merge'
 
 	const { form, errors, constraints, message, enhance } =
-		superForm<SignInSchema>($page.data.form)
+		superForm<SignInSchema>(page.data.form)
 </script>
 
 <form class="flex flex-col gap-10" method="post" use:enhance>

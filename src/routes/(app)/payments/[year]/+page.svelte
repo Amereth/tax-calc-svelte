@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 	import Month from '$lib/components/month.svelte'
 	import { MONTHS } from '$lib/constants/month'
 	import type { Payment } from '$lib/server/schemas/payments'
@@ -7,9 +7,9 @@
 	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
 	import { Accordion } from '@skeletonlabs/skeleton'
 
-	const year = $derived($page.params.year)
+	const year = $derived(page.params.year)
 
-	const { payments } = $derived($page.data) as { payments: Payment[] }
+	const { payments } = $derived(page.data) as { payments: Payment[] }
 
 	const currentYearPayments = $derived(getCurrentYearValues(year, payments))
 </script>
