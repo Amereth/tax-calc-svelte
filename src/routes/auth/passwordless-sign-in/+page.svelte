@@ -4,7 +4,7 @@
 
 <Links passwordless={true} />
 
-<form class="mt-20 flex flex-col gap-10" action="?/signIn" method="post">
+<form class="mt-20 flex flex-col gap-10" method="post">
 	<label class="flex flex-col gap-2">
 		email
 		<input
