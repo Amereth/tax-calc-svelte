@@ -2,6 +2,7 @@ import { users, sessions } from './schemas'
 import type { User, Session } from './schemas/types'
 import { db } from './db'
 import { eq } from 'drizzle-orm'
+import crypto from 'crypto'
 
 export const SESSION_EXPIRATION_PERIOD = 1000 * 60 * 60 * 24 * 7
 
@@ -71,3 +72,5 @@ export async function invalidateSession(
 export type SessionValidationResult =
 	| { session: Session; user: User }
 	| { session: null; user: null }
+
+export const generateOTP = () => crypto.randomInt(100_000, 999_999)
