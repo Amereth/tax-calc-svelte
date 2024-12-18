@@ -134,6 +134,13 @@
       "when": 1734532857305,
       "tag": "0018_free_selene",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1734533024250,
+      "tag": "0019_vengeful_maginty",
+      "breakpoints": true
     }
   ]
 }

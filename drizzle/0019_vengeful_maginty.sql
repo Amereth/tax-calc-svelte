@@ -1,0 +1,1 @@
+ALTER TABLE `otp_codes` ADD `expiry_date` integer NOT NULL;

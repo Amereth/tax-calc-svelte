@@ -11,6 +11,7 @@ export const otpCodes = sqliteTable('otp_codes', {
 	userEmail: integer('user_email')
 		.notNull()
 		.references(() => users.email),
+	expiryDate: integer('expiry_date').notNull(),
 })
 
 export type OtpCode = InferSelectModel<typeof otpCodes>
