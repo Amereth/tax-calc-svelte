@@ -4,6 +4,7 @@
 	import { page } from '$app/state'
 	import type { PasswordlessSignInSchema } from '../schemas'
 	import { twMerge } from 'tailwind-merge'
+	import { ArrowRightIcon } from 'lucide-svelte'
 
 	const { form, errors, constraints, message, enhance } =
 		superForm<PasswordlessSignInSchema>(page.data.form)
@@ -30,4 +31,10 @@
 	</label>
 
 	<button type="submit" class="variant-filled-primary btn">sign in</button>
+
+	<div class="mx-auto flex items-center gap-4">
+		<span> don't have an account yet? </span>
+		<ArrowRightIcon class="inline" />
+		<a class="d-link d-link-primary" href="/auth/sign-up">sign up</a>
+	</div>
 </form>
