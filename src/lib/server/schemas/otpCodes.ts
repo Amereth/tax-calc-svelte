@@ -2,7 +2,7 @@ import { sqliteTable, integer } from 'drizzle-orm/sqlite-core'
 import type { InferSelectModel } from 'drizzle-orm'
 import { users } from './users'
 
-export const ssoCodes = sqliteTable('sso_codes', {
+export const otpCodes = sqliteTable('otp_codes', {
 	id: integer('id').primaryKey(),
 	code: integer('code').notNull(),
 	userId: integer('user_id')
@@ -13,4 +13,4 @@ export const ssoCodes = sqliteTable('sso_codes', {
 		.references(() => users.email),
 })
 
-export type SsoCode = InferSelectModel<typeof ssoCodes>
+export type OtpCode = InferSelectModel<typeof otpCodes>
