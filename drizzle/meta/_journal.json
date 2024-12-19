@@ -141,6 +141,13 @@
       "when": 1734533024250,
       "tag": "0019_vengeful_maginty",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1734637787222,
+      "tag": "0020_plain_raider",
+      "breakpoints": true
     }
   ]
 }
