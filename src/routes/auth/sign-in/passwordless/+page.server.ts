@@ -62,11 +62,12 @@ export const actions = {
 			.setSubject('otp')
 			.setHtml(`otp: ${otp}`)
 
-		try {
-			await mailerSend.email.send(emailParams)
-			return redirect(307, '/auth/passwordless-sign-in/otp')
-		} catch (error) {
-			console.error(error)
+		const response = await mailerSend.email.send(emailParams)
+
+		if (response.statusCode <= 300) {
+			return redirect(307, '/auth/sign-in/passwordless/otp')
+		} else {
+			console.error('ERROR', response)
 			return message(form, 'otp not sent, try again')
 		}
 	},
