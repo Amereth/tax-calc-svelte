@@ -4,11 +4,11 @@ import { redirect, type Actions } from '@sveltejs/kit'
 import { eq } from 'drizzle-orm'
 import { fail, message, superValidate } from 'sveltekit-superforms'
 import { valibot } from 'sveltekit-superforms/adapters'
-import { passwordlessSignInSchema } from '../schemas'
 import type { PageServerLoad } from './$types'
 import { generateOTP, validateSession } from '$lib/server/auth'
 import { EmailParams, MailerSend, Recipient, Sender } from 'mailersend'
 import { MAILERSEND_API_KEY, MAILERSEND_DOMAIN } from '$env/static/private'
+import { passwordlessSignInSchema } from './schemas'
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const sessionId = cookies.get('sessionId')
@@ -64,7 +64,7 @@ export const actions = {
 
 		try {
 			await mailerSend.email.send(emailParams)
-			return message(form, 'otp sent')
+			return redirect(307, '/auth/passwordless-sign-in/otp')
 		} catch (error) {
 			console.error(error)
 			return message(form, 'otp not sent, try again')

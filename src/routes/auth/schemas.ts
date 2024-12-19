@@ -7,9 +7,3 @@ export const signInSchema = v.object({
 })
 
 export type SignInSchema = v.InferInput<typeof signInSchema>
-
-export const passwordlessSignInSchema = v.object({ email: emailSchema })
-
-export type PasswordlessSignInSchema = v.InferInput<
-	typeof passwordlessSignInSchema
->

@@ -1,17 +1,13 @@
 <script lang="ts">
 	import { superForm } from 'sveltekit-superforms'
-	import Links from '../(_components)/links.svelte'
+	import Links from '../../(_components)/links.svelte'
 	import { page } from '$app/state'
-	import type { PasswordlessSignInSchema } from '../schemas'
+	import type { PasswordlessSignInSchema } from './schemas'
 	import { twMerge } from 'tailwind-merge'
 	import { ArrowRightIcon } from 'lucide-svelte'
 
-	let isEmailSent = $state(false)
-
 	const { form, errors, constraints, message, enhance } =
-		superForm<PasswordlessSignInSchema>(page.data.form, {
-			resetForm: false,
-		})
+		superForm<PasswordlessSignInSchema>(page.data.form)
 </script>
 
 <Links passwordless={true} />
@@ -31,11 +27,10 @@
 			aria-invalid={$errors.email ? 'true' : undefined}
 			autocomplete="email"
 			{...$constraints.email}
-			disabled={isEmailSent}
 		/>
 	</label>
 
-	<button type="submit" class="variant-filled-primary btn">sign in</button>
+	<button type="submit" class="variant-filled-primary btn">send code</button>
 
 	<div class="mx-auto flex items-center gap-4">
 		<span> don't have an account yet? </span>

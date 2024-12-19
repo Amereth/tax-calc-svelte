@@ -6,7 +6,7 @@
 
 <div class="logo-cloud grid-cols-2 rounded-none">
 	<a
-		href="/auth/passwordless-sign-in"
+		href="/auth/sign-in/passwordless"
 		class={twMerge(
 			'logo-item rounded-bl-md rounded-tl-md py-3',
 			passwordless ? 'variant-filled-primary' : 'variant-outline-primary',
