@@ -42,6 +42,6 @@ export const actions = {
 
 		const { userId } = resp[0]
 
-		await handleSession(userId, cookies)
+		return await handleSession(userId, cookies)
 	},
 } satisfies Actions

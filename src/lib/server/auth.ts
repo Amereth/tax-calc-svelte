@@ -73,4 +73,4 @@ export type SessionValidationResult =
 	| { session: Session; user: User }
 	| { session: null; user: null }
 
-export const generateOTP = () => crypto.randomInt(100_000, 999_999)
+export const generateOTP = (): number => crypto.randomInt(100_000, 999_999)

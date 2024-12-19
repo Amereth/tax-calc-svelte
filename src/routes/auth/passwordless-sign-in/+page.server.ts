@@ -1,5 +1,5 @@
 import { db } from '$lib/server/db'
-import { users } from '$lib/server/schemas'
+import { otpCodes, users } from '$lib/server/schemas'
 import { redirect, type Actions } from '@sveltejs/kit'
 import { eq } from 'drizzle-orm'
 import { fail, message, superValidate } from 'sveltekit-superforms'
@@ -42,6 +42,14 @@ export const actions = {
 
 		const otp = generateOTP()
 
+		await db.insert(otpCodes).values({
+			// @ts-expect-error TS2769  SOME BUG WITH DRIZZLE OR TS
+			code: otp,
+			userId: user.id,
+			userEmail: user.email,
+			expiryDate: new Date(Date.now() + 1000 * 60 * 60 * 5), // 5 minutes
+		})
+
 		const mailerSend = new MailerSend({ apiKey: MAILERSEND_API_KEY })
 
 		const sentFrom = new Sender(MAILERSEND_DOMAIN, 'tax-calc')
@@ -54,11 +62,12 @@ export const actions = {
 			.setSubject('otp')
 			.setHtml(`otp: ${otp}`)
 
-		mailerSend.email
-			.send(emailParams)
-			.then((response) => console.log(response))
-			.catch((error) => console.log(error))
-
-		// await handleSession(user.id, cookies)
+		try {
+			await mailerSend.email.send(emailParams)
+			return message(form, 'otp sent')
+		} catch (error) {
+			console.error(error)
+			return message(form, 'otp not sent, try again')
+		}
 	},
 } satisfies Actions

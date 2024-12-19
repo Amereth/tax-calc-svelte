@@ -6,8 +6,12 @@
 	import { twMerge } from 'tailwind-merge'
 	import { ArrowRightIcon } from 'lucide-svelte'
 
+	let isEmailSent = $state(false)
+
 	const { form, errors, constraints, message, enhance } =
-		superForm<PasswordlessSignInSchema>(page.data.form)
+		superForm<PasswordlessSignInSchema>(page.data.form, {
+			resetForm: false,
+		})
 </script>
 
 <Links passwordless={true} />
@@ -27,6 +31,7 @@
 			aria-invalid={$errors.email ? 'true' : undefined}
 			autocomplete="email"
 			{...$constraints.email}
+			disabled={isEmailSent}
 		/>
 	</label>
 

@@ -52,6 +52,6 @@ export const actions = {
 			)
 		}
 
-		await handleSession(user.id, cookies)
+		return await handleSession(user.id, cookies)
 	},
 } satisfies Actions
