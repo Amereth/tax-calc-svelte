@@ -44,7 +44,7 @@
 					const [_, month] = payment.date.split('-').map(Number)
 					return [index, index + 1, index - 1].includes(month)
 				})}
-				className="mb-6 mt-2 text-primary pr-6 ml-4"
+				className="mb-6 mt-2 text-primary pr-10 ml-4"
 			/>
 		{/if}
 	{/each}
