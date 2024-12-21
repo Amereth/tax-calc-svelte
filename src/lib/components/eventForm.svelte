@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { CheckIcon } from 'lucide-svelte'
-	import MinSizeInput from './minSizeInput.svelte'
 	import type { Event } from '$lib/server/schemas/events'
 	import EventLabel from './eventLabel.svelte'
 
@@ -40,23 +39,26 @@
 	<input type="hidden" value={quarter} name="quarter" />
 	<input type="hidden" value={type} name="type" />
 
-	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
-		сума
-		<MinSizeInput value={sum} name="sum" className="ml-auto" />
+	<label class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+		<div class="input-group-shim">сума</div>
+
+		<input value={sum} name="sum" class="input" />
 	</label>
 
-	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
-		дата
-		<input type="date" value={doneDate} name="doneDate" class="ml-auto" />
+	<label class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+		<div class="input-group-shim">дата</div>
+
+		<input type="date" value={doneDate} name="doneDate" class="input" />
 	</label>
 
-	<label class="d-input d-input-sm d-input-bordered flex items-center gap-2">
-		гранична дата
+	<label class="input-group input-group-divider grid-cols-[auto_1fr_auto]">
+		<div class="input-group-shim">гранична дата</div>
+
 		<input
 			type="date"
 			value={latestDoneDate}
 			name="latestDoneDate"
-			class="ml-auto"
+			class="input"
 		/>
 	</label>
 
