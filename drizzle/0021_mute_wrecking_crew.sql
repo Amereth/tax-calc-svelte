@@ -1,0 +1,1 @@
+ALTER TABLE `otp_codes` ADD `is_used` integer DEFAULT 0 NOT NULL;
