@@ -4,7 +4,7 @@ import {
 	SESSION_EXPIRATION_PERIOD,
 } from '$lib/server/auth'
 import type { User } from '$lib/server/schemas/users'
-import { type Cookies, redirect } from '@sveltejs/kit'
+import { type Cookies } from '@sveltejs/kit'
 
 export const handleSession = async (userId: User['id'], cookies: Cookies) => {
 	const sessionId = generateSessionId()
@@ -17,6 +17,4 @@ export const handleSession = async (userId: User['id'], cookies: Cookies) => {
 		path: '/',
 		maxAge: SESSION_EXPIRATION_PERIOD,
 	})
-
-	return redirect(307, '/')
 }

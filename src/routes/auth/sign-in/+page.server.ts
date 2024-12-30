@@ -52,6 +52,7 @@ export const actions = {
 			)
 		}
 
-		return await handleSession(user.id, cookies)
+		await handleSession(user.id, cookies)
+		return redirect(307, '/')
 	},
 } satisfies Actions

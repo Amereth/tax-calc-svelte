@@ -41,6 +41,8 @@ export const actions = {
 			return message(form, 'otp not found')
 		}
 
-		return await handleSession(otp.userId, cookies)
+		await handleSession(otp.userId, cookies)
+
+		return redirect(307, '/')
 	},
 } satisfies Actions

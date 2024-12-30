@@ -42,6 +42,8 @@ export const actions = {
 
 		const { userId } = resp[0]
 
-		return await handleSession(userId, cookies)
+		await handleSession(userId, cookies)
+
+		return redirect(307, '/')
 	},
 } satisfies Actions
