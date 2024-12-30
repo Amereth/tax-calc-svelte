@@ -38,10 +38,12 @@ export const actions = {
 		const now = Date.now()
 
 		if (!otp || now > otp.expiryDate) {
-			return message(form, 'otp not found')
+			return message(form, 'otp not found or expired')
 		}
 
 		await handleSession(otp.userId, cookies)
+
+		db.delete(otpCodes).where(eq(otpCodes.id, otp.id))
 
 		return redirect(307, '/')
 	},
