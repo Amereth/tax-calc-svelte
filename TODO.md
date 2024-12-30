@@ -1,6 +1,6 @@
 - add audio feedback for actions
 
-- add passwordless authentication flow
+# add passwordless authentication flow
 
 - add graphs
 
