@@ -34,6 +34,7 @@
 		<a class="d-link d-link-primary" href="/esv/{year}">ЄСВ</a>
 		<a class="d-link d-link-primary" href="/ep/{year}">ЄП</a>
 		<a class="d-link d-link-primary" href="/events/{year}">events</a>
+		<a class="d-link d-link-primary" href="/statistics/{year}">статистика</a>
 	</nav>
 
 	<button class="variant-outline-primary btn btn-sm ml-auto" onclick={signOut}
