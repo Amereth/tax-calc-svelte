@@ -13,7 +13,7 @@
 
 <Links passwordless={false} />
 
-{#if $message}
+{#if message}
 	<h3 class="mt-10 text-center text-3xl text-error">{$message}</h3>
 {/if}
 
