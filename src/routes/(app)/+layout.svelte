@@ -31,8 +31,7 @@
 
 	<nav class="flex gap-8">
 		<a class="d-link d-link-primary" href="/payments/{year}">payments</a>
-		<a class="d-link d-link-primary" href="/esv/{year}">ЄСВ</a>
-		<a class="d-link d-link-primary" href="/ep/{year}">ЄП</a>
+		<a class="d-link d-link-primary" href="/taxes/{year}">налоги</a>
 		<a class="d-link d-link-primary" href="/events/{year}">events</a>
 		<a class="d-link d-link-primary" href="/statistics/{year}">статистика</a>
 	</nav>
