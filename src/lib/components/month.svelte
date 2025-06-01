@@ -71,10 +71,18 @@
 
 		<svelte:fragment slot="content">
 			<div class="flex gap-2">
-				<div class="flex-1">
+				<div class="flex flex-1 flex-col gap-3">
 					{#each payments as payment}
 						<div class="flex items-center gap-2">
 							<div class="text-xl">{formatter('UAH').format(payment.sum)}</div>
+							{#if payment.originalCurrency && payment.originalSum}
+								-
+								<div class="text-xl">
+									{formatter(payment.originalCurrency).format(
+										payment.originalSum,
+									)}
+								</div>
+							{/if}
 							<button
 								type="button"
 								class="variant-outline-primary btn-icon btn-icon-sm ml-4 rounded-lg"
