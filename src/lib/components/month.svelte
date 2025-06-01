@@ -79,6 +79,7 @@
 								type="button"
 								class="variant-outline-primary btn-icon btn-icon-sm ml-4 rounded-lg"
 								onclick={() => (editedPayment = payment.id)}
+								disabled={editedPayment === payment.id}
 							>
 								<PenIcon size="16" />
 							</button>
