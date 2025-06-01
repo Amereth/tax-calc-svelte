@@ -29,3 +29,5 @@
 - add rate limiter
 
 - add cron job to clean up expired otp codes from db
+
+- hold do delete feature
