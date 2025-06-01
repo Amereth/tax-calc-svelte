@@ -55,7 +55,7 @@
 				id={esvEvent?.id}
 				{year}
 				{quarter}
-				sum={esvEvent?.sum ?? quarterEsv}
+				sum={esvEvent?.sum || quarterEsv}
 				doneDate={esvEvent?.doneDate}
 				latestDoneDate={esvEvent?.latestDoneDate}
 				type="esv"
@@ -66,7 +66,7 @@
 				id={epEvent?.id}
 				{year}
 				{quarter}
-				sum={epEvent?.sum ?? quarterEp}
+				sum={epEvent?.sum || quarterEp}
 				doneDate={epEvent?.doneDate}
 				latestDoneDate={epEvent?.latestDoneDate}
 				type="ep"
