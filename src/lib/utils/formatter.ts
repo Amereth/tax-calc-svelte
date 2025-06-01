@@ -3,5 +3,6 @@ export const formatter = (currency: string) =>
 		style: 'currency',
 		currency,
 		currencyDisplay: 'narrowSymbol',
+		minimumFractionDigits: 0,
 		maximumFractionDigits: 2,
 	})
