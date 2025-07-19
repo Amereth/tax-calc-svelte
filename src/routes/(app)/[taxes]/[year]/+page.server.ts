@@ -5,11 +5,26 @@ import { eq } from 'drizzle-orm'
 import { taxes } from '$lib/server/schemas'
 import { getTaxes } from '$lib/server/utils'
 import type { Tax } from '$lib/server/schemas/tax'
+import { superValidate } from 'sveltekit-superforms'
+import { arktype } from 'sveltekit-superforms/adapters'
+import { newTaxSchema, newTaxSchemaDefaults } from './schema'
 
 export const load: PageServerLoad = async ({ params }) => {
-	const taxes = await getTaxes({ year: +params.year, name: params.taxName })
+	const taxes = await getTaxes({ year: +params.year })
+	const allTaxes = await getTaxes()
 
-	return { taxes }
+	const form = await superValidate(
+		arktype(newTaxSchema, { defaults: newTaxSchemaDefaults }),
+	)
+
+	return {
+		form,
+		taxes,
+		taxNames: allTaxes.reduce<Tax['name'][]>((acc, tax) => {
+			if (!acc.includes(tax.name)) acc.push(tax.name)
+			return acc
+		}, []),
+	}
 }
 
 export const actions = {
@@ -18,7 +33,7 @@ export const actions = {
 
 		const date = data.get('date') as string
 		const sum = Number(data.get('sum'))
-		const type = data.get('type') as 'fixed' | 'percent'
+		const type = data.get('type') as Tax['type']
 
 		db.insert(taxes)
 			.values({

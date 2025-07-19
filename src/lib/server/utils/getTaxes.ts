@@ -1,14 +1,13 @@
-import { and, between, eq } from 'drizzle-orm'
+import { and, between } from 'drizzle-orm'
 import { db } from '../db'
-import { taxes, type Tax } from '../schemas/tax'
+import { taxes } from '../schemas/tax'
 
-export const getTaxes = ({ year, name }: { year: number; name: Tax['name'] }) =>
+export const getTaxes = ({ year }: { year?: number } = {}) =>
 	db
 		.select()
 		.from(taxes)
 		.where(
-			and(
-				eq(taxes.name, name),
-				between(taxes.date, `${year}-01-01`, `${year}-12-31`),
-			),
+			year
+				? and(between(taxes.date, `${year}-01-01`, `${year}-12-31`))
+				: undefined,
 		)
