@@ -28,7 +28,7 @@
 <details class={twMerge('transition-colors duration-300 ease-out')}>
 	<summary
 		class={[
-			'text-md flex justify-between rounded-xl border-b-[1px] border-surface-900 p-2 px-4 font-medium',
+			'text-md flex justify-between rounded-xl border-b border-surface-900 p-2 px-4 font-medium',
 		]}
 	>
 		<div>{MONTHS[month]}</div>

@@ -21,7 +21,7 @@
 </script>
 
 <form
-	class="flex items-center gap-8 border-b-[1px] py-2 text-xl"
+	class="flex items-center gap-8 border-b py-2 text-xl"
 	method="post"
 	action={id ? '?/update' : '?/insert'}
 >

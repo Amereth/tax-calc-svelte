@@ -37,7 +37,7 @@
 				[undefined, undefined, undefined],
 			)}
 
-		<div class="flex flex-col gap-8 rounded-xl border-[1px] border-surface p-4">
+		<div class="flex flex-col gap-8 rounded-xl border border-surface p-4">
 			<div class="mr-4 text-right">{quarter} квартал {year}</div>
 
 			<EventForm
