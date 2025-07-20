@@ -5,7 +5,7 @@
 	import type { Payment } from '$lib/server/schemas/payments'
 	import Summary from '$lib/components/summary.svelte'
 	import { getCurrentYearValues } from '$lib/utils/getCurrentYearValues'
-	import { Accordion } from '@skeletonlabs/skeleton'
+	import { twMerge } from 'tailwind-merge'
 
 	const year = $derived(page.params.year)
 
@@ -21,7 +21,12 @@
 	/>
 
 	{#each MONTHS as month, index}
-		<Accordion>
+		<div
+			class={twMerge(
+				'rounded-xl border-y-2 border-b-primary-200 border-t-surface-900 px-2 pt-2 hover:border-b-primary',
+				'transition-colors duration-300 ease-out',
+			)}
+		>
 			<Month
 				month={index}
 				payments={currentYearPayments.filter((payment) => {
@@ -36,7 +41,7 @@
 					return true
 				})}
 			/>
-		</Accordion>
+		</div>
 
 		{#if (index + 1) % 3 === 0}
 			<Summary
