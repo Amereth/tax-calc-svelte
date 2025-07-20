@@ -107,11 +107,29 @@
 }
 
 @layer components {
+	* {
+		outline: none;
+	}
+
 	body {
 		@apply dark:text-neutral-200;
 	}
 
 	a {
 		@apply dark:text-primary-500 hover:underline;
+	}
+
+	select {
+		@apply dark:text-primary-500 border-primary-500 rounded-4xl border px-4 py-1 font-semibold;
+		@apply hover:bg-primary-500 hover:text-surface-900;
+	}
+
+	button {
+		@apply dark:text-primary-500 border-primary-500 grid place-content-center rounded-4xl border px-4 py-1 font-semibold;
+		@apply hover:bg-primary-500 hover:text-surface-900;
+
+		&.icon {
+			@apply size-9 !rounded-full !p-0;
+		}
 	}
 }

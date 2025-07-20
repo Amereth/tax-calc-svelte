@@ -51,7 +51,7 @@
 						<div class="mt-2 flex gap-2">
 							{#each data.taxNames as taxName}
 								<button
-									class="flex items-center rounded-xl border border-primary-500 px-2 text-sm leading-none"
+									class="border-primary-500 flex items-center rounded-xl border px-2 text-sm leading-none"
 									type="button"
 									onclick={() =>
 										formData.update((value) => ({ ...value, name: taxName }))}
@@ -122,11 +122,11 @@
 		</div>
 
 		<div class="mt-8 flex gap-4">
-			<button type="submit">
+			<button type="submit" class="icon">
 				<CheckIcon size="16" />
 			</button>
 
-			<button type="reset">
+			<button type="reset" class="icon">
 				<XIcon size="16" />
 			</button>
 		</div>

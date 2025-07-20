@@ -35,16 +35,16 @@
 		<input name="sum" value={sum} class="w-40 text-center text-xl" />
 
 		<div>
-			<button type="submit">
+			<button type="submit" class="icon">
 				<CheckIcon size="16" />
 			</button>
-			<button type="reset" onclick={() => (isEdited = false)}>
+			<button type="reset" onclick={() => (isEdited = false)} class="icon">
 				<XIcon size="16" />
 			</button>
 		</div>
 	{:else}
 		<div class="w-40 text-center">{sum}</div>
-		<button type="button" class="ml-9" onclick={() => (isEdited = true)}>
+		<button type="button" onclick={() => (isEdited = true)} class="icon ml-9">
 			<PenIcon size="16" />
 		</button>
 	{/if}

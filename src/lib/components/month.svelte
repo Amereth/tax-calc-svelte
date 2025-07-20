@@ -28,7 +28,7 @@
 <details class={twMerge('transition-colors duration-300 ease-out')}>
 	<summary
 		class={[
-			'text-md flex justify-between rounded-xl border-b border-surface-900 p-2 px-4 font-medium',
+			'text-md border-surface-900 flex justify-between rounded-xl border-b p-2 px-4 font-medium',
 		]}
 	>
 		<div>{MONTHS[month]}</div>
@@ -49,7 +49,7 @@
 
 	<div
 		class={twMerge(
-			'rounded-xl border-y-2 border-b-primary-200 border-t-surface-900 px-2 pt-2 hover:border-b-primary',
+			'border-b-primary-200 border-t-surface-900 hover:border-b-primary rounded-xl border-y-2 px-2 pt-2',
 			'transition-colors duration-300 ease-out',
 		)}
 	>
@@ -68,7 +68,7 @@
 						{/if}
 						<button
 							type="button"
-							class="ml-4 rounded-lg"
+							class="icon ml-4"
 							onclick={() => (editedPayment = payment.id)}
 							disabled={editedPayment === payment.id}
 						>
@@ -76,7 +76,7 @@
 						</button>
 						<form action="?/delete" method="post">
 							<input type="hidden" name="id" value={payment.id} />
-							<button type="submit" class="rounded-lg">
+							<button type="submit" class="icon">
 								<XIcon size="16" />
 							</button>
 						</form>
@@ -151,12 +151,12 @@
 				</label>
 
 				<div class="flex gap-2">
-					<button type="submit" class="ml-auto rounded-lg">
+					<button type="submit" class="icon ml-auto">
 						<CheckIcon size="16" />
 					</button>
 					<button
 						type="reset"
-						class="rounded-lg"
+						class="icon"
 						onclick={() => (editedPayment = undefined)}
 					>
 						<XIcon size="16" />
