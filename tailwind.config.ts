@@ -1,6 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { skeleton } from '@skeletonlabs/tw-plugin'
-import { mainTheme, colors } from './src/configs/theme'
+import { colors } from './src/configs/theme'
 import forms from '@tailwindcss/forms'
 
 export default {
@@ -40,12 +39,5 @@ export default {
 		},
 	},
 	darkMode: 'class',
-	plugins: [
-		forms,
-		skeleton({
-			themes: {
-				custom: [mainTheme],
-			},
-		}),
-	],
+	plugins: [forms],
 } satisfies Config as Config
