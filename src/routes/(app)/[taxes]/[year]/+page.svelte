@@ -122,11 +122,11 @@
 		</div>
 
 		<div class="mt-8 flex gap-4">
-			<button type="submit" class="d-btn d-btn-square d-btn-sm">
+			<button type="submit">
 				<CheckIcon size="16" />
 			</button>
 
-			<button type="reset" class="d-btn d-btn-square d-btn-sm">
+			<button type="reset">
 				<XIcon size="16" />
 			</button>
 		</div>

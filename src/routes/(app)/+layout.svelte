@@ -18,7 +18,7 @@
 <header class="flex items-center gap-8">
 	<select
 		bind:value={year}
-		class="select variant-outline-primary w-min"
+		class="w-min"
 		onchange={() => {
 			const url = page.url.pathname.slice(0, -5)
 			goto(`${url}/${year}`)
@@ -30,15 +30,13 @@
 	</select>
 
 	<nav class="flex gap-8">
-		<a class="d-link d-link-primary" href="/payments/{year}">payments</a>
-		<a class="d-link d-link-primary" href="/taxes/{year}">налоги</a>
-		<a class="d-link d-link-primary" href="/events/{year}">events</a>
-		<a class="d-link d-link-primary" href="/statistics/{year}">статистика</a>
+		<a href="/payments/{year}">payments</a>
+		<a href="/taxes/{year}">налоги</a>
+		<a href="/events/{year}">events</a>
+		<a href="/statistics/{year}">статистика</a>
 	</nav>
 
-	<button class="variant-outline-primary btn btn-sm ml-auto" onclick={signOut}
-		>sign out</button
-	>
+	<button class="ml-auto" onclick={signOut}>sign out</button>
 </header>
 
 <main class="mt-4 grow">

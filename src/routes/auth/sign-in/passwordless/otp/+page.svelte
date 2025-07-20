@@ -30,13 +30,11 @@
 		/>
 	</label>
 
-	<button type="submit" class="variant-filled-primary btn">sign in</button>
+	<button type="submit">sign in</button>
 
 	<div class="mx-auto flex items-center gap-4">
 		<span> didn't receive the code? </span>
 		<ArrowRightIcon class="inline" />
-		<a class="d-link d-link-primary" href="/auth/sign-in/passwordless">
-			send another one
-		</a>
+		<a href="/auth/sign-in/passwordless"> send another one </a>
 	</div>
 </form>

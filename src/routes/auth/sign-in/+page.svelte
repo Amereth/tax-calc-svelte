@@ -41,11 +41,11 @@
 		{...$constraints.password}
 	/>
 
-	<button type="submit" class="variant-filled-primary btn">sign in</button>
+	<button type="submit">sign in</button>
 
 	<div class="mx-auto flex items-center gap-4">
 		<span> don't have an account yet? </span>
 		<ArrowRightIcon class="inline" />
-		<a class="d-link d-link-primary" href="/auth/sign-up">sign up</a>
+		<a href="/auth/sign-up">sign up</a>
 	</div>
 </form>

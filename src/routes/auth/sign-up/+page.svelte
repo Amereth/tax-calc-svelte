@@ -38,11 +38,11 @@
 		autocomplete="new-password"
 	/>
 
-	<button type="submit" class="variant-filled-primary btn">sign up</button>
+	<button type="submit">sign up</button>
 
 	<div class="mx-auto flex items-center gap-4">
 		<span>already have account?</span>
 		<ArrowRightIcon class="inline" />
-		<a class="d-link d-link-primary" href="/auth/sign-in">sign in</a>
+		<a href="/auth/sign-in">sign in</a>
 	</div>
 </form>

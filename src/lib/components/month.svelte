@@ -85,7 +85,7 @@
 							{/if}
 							<button
 								type="button"
-								class="variant-outline-primary btn-icon btn-icon-sm ml-4 rounded-lg"
+								class="ml-4 rounded-lg"
 								onclick={() => (editedPayment = payment.id)}
 								disabled={editedPayment === payment.id}
 							>
@@ -93,10 +93,7 @@
 							</button>
 							<form action="?/delete" method="post">
 								<input type="hidden" name="id" value={payment.id} />
-								<button
-									type="submit"
-									class="variant-outline-primary btn-icon btn-icon-sm rounded-lg"
-								>
+								<button type="submit" class="rounded-lg">
 									<XIcon size="16" />
 								</button>
 							</form>
@@ -171,15 +168,12 @@
 					</label>
 
 					<div class="flex gap-2">
-						<button
-							type="submit"
-							class="variant-outline-primary btn-icon btn-icon-sm ml-auto rounded-lg"
-						>
+						<button type="submit" class="ml-auto rounded-lg">
 							<CheckIcon size="16" />
 						</button>
 						<button
 							type="reset"
-							class="variant-outline-primary btn-icon btn-icon-sm rounded-lg"
+							class="rounded-lg"
 							onclick={() => (editedPayment = undefined)}
 						>
 							<XIcon size="16" />
