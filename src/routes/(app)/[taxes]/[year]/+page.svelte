@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state'
 	import TaxMonth from '$lib/components/taxMonth.svelte'
-	import type { Tax } from '$lib/server/schemas/tax'
 	import { superForm } from 'sveltekit-superforms'
 	import {
 		newTaxSchema,
@@ -36,7 +35,12 @@
 		{/each}
 	</select>
 
-	<form method="POST" use:enhance action="?/insert" class="flex gap-16">
+	<form
+		method="POST"
+		use:enhance
+		action="?/insert"
+		class="mt-8 grid grid-cols-2 gap-x-16 gap-y-8"
+	>
 		<div>
 			<Field {form} name="name">
 				<Control>
@@ -121,7 +125,7 @@
 			</Field>
 		</div>
 
-		<div class="mt-8 flex gap-4">
+		<div class="mt-6 flex gap-4">
 			<button type="submit" class="icon">
 				<CheckIcon size="16" />
 			</button>

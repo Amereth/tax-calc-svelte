@@ -23,7 +23,7 @@
 	{#each MONTHS as month, index}
 		<div
 			class={twMerge(
-				'rounded-xl border-y-2 border-b-primary-200 border-t-surface-900 px-2 pt-2 hover:border-b-primary',
+				'border-b-primary-200 border-t-surface-900 hover:border-b-primary rounded-xl border-y-2 px-2 pt-2',
 				'transition-colors duration-300 ease-out',
 			)}
 		>

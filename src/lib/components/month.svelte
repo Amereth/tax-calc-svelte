@@ -28,7 +28,7 @@
 <details class={twMerge('transition-colors duration-300 ease-out')}>
 	<summary
 		class={[
-			'text-md border-surface-900 flex justify-between rounded-xl border-b p-2 px-4 font-medium',
+			'text-md border-surface-900 flex justify-between rounded-xl p-2 px-4 font-medium',
 		]}
 	>
 		<div>{MONTHS[month]}</div>
@@ -49,7 +49,7 @@
 
 	<div
 		class={twMerge(
-			'border-b-primary-200 border-t-surface-900 hover:border-b-primary rounded-xl border-y-2 px-2 pt-2',
+			'rounded-xl border-y-2 border-b-0 px-2 pt-2 pb-2',
 			'transition-colors duration-300 ease-out',
 		)}
 	>
@@ -91,14 +91,12 @@
 			>
 				<input name="id" type="hidden" value={editedPayment} />
 
-				<label
-					class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
-				>
-					<div class="input-group-shim">сума</div>
+				<label class="grid-cols-[auto_1fr_auto]">
+					<div>сума</div>
 					<input
 						name="sum"
 						type="text"
-						class="input block w-full"
+						class="block h-9 w-full"
 						required
 						value={editedPayment
 							? payments.find((payment) => payment.id === editedPayment)?.sum
@@ -106,14 +104,12 @@
 					/>
 				</label>
 
-				<label
-					class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
-				>
-					<div class="input-group-shim">дата</div>
+				<label class="grid-cols-[auto_1fr_auto]">
+					<div class="">дата</div>
 					<input
 						name="date"
 						type="date"
-						class="input block w-full"
+						class="block h-9 w-full"
 						required
 						value={editedPayment
 							? payments.find((payment) => payment.id === editedPayment)?.date
@@ -121,34 +117,36 @@
 					/>
 				</label>
 
-				<label
-					for="originalSum"
-					class="input-group input-group-divider grid-cols-[auto_1fr_auto]"
-				>
-					<div class="whitespace input-group-shim">сума в валюті</div>
-					<input
-						id="originalSum"
-						name="originalSum"
-						type="text"
-						class="input block w-full"
-						value={editedPayment
-							? payments.find((payment) => payment.id === editedPayment)
-									?.originalSum
-							: ''}
-					/>
+				<div class="flex gap-2">
+					<label for="originalSum" class="grid-cols-[auto_1fr_auto]">
+						<div class="whitespace">сума в валюті</div>
+						<input
+							id="originalSum"
+							name="originalSum"
+							type="text"
+							class="block h-9 w-full"
+							value={editedPayment
+								? payments.find((payment) => payment.id === editedPayment)
+										?.originalSum
+								: ''}
+						/>
+					</label>
 
-					<select
-						name="originalCurrency"
-						class="select input-group-shim"
-						value={editedPayment
-							? payments.find((payment) => payment.id === editedPayment)
-									?.originalCurrency
-							: ''}
-					>
-						<option value="EUR">EUR</option>
-						<option value="USD">USD</option>
-					</select>
-				</label>
+					<label>
+						<div>орігінальна валюта</div>
+						<select
+							name="originalCurrency"
+							class="mt-auto h-9"
+							value={editedPayment
+								? payments.find((payment) => payment.id === editedPayment)
+										?.originalCurrency
+								: ''}
+						>
+							<option value="EUR">EUR</option>
+							<option value="USD">USD</option>
+						</select>
+					</label>
+				</div>
 
 				<div class="flex gap-2">
 					<button type="submit" class="icon ml-auto">
