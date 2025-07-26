@@ -28,18 +28,19 @@ export const load: PageServerLoad = async ({ params }) => {
 }
 
 export const actions = {
-	insert: async ({ request, params, locals }) => {
+	insert: async ({ request, locals }) => {
 		const data = await request.formData()
 
 		const date = data.get('date') as string
 		const sum = Number(data.get('sum'))
 		const type = data.get('type') as Tax['type']
+		const name = data.get('name') as Tax['name']
 
 		db.insert(taxes)
 			.values({
 				date,
 				sum,
-				name: params.taxName as 'esv' | 'ep',
+				name,
 				type,
 				userId: locals.user.id,
 			})
