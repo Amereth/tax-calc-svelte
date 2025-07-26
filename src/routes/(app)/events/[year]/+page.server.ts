@@ -7,14 +7,15 @@ import { eq } from 'drizzle-orm'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ params }) => {
-	const [payments, esvs, eps, events] = await Promise.all([
+	const [payments, esvs, eps, military, events] = await Promise.all([
 		getPayments({ year: +params.year }),
 		getTaxes({ year: +params.year, name: 'esv' }),
 		getTaxes({ year: +params.year, name: 'ep' }),
+		getTaxes({ year: +params.year, name: 'military' }),
 		getEvents({ year: +params.year }),
 	])
 
-	return { payments, esvs, eps, events }
+	return { payments, esvs, eps, military, events }
 }
 
 export const actions = {

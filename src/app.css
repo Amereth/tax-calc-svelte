@@ -132,4 +132,8 @@
 			@apply size-9 !rounded-full !p-0;
 		}
 	}
+
+	input {
+		@apply border-primary-500 rounded-4xl border px-4 py-1 font-semibold;
+	}
 }

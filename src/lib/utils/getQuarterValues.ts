@@ -8,11 +8,13 @@ export const getQuarterValues = ({
 	payments,
 	esvs,
 	eps,
+	military,
 }: {
 	quarter: Quarter
 	payments: Payment[]
 	esvs: Tax[]
 	eps: Tax[]
+	military: Tax[]
 }) => {
 	const monthsByQuarter: Record<Quarter, number[]> = {
 		1: [1, 2, 3],
@@ -46,24 +48,27 @@ export const getQuarterValues = ({
 
 		const ep = eps.find((ep) => ep.date === payment.date.slice(0, 7))
 
-		console.log({
-			paymentMonth,
-			quarter,
-			test: monthsByQuarter[quarter].includes(paymentMonth),
-			ep,
-			eps,
-		})
+		if (!ep) return acc
+
+		return acc + payment.sum * ep.sum
+	}, 0)
+
+	const quarterMilitary = payments.reduce((acc, payment) => {
+		const [, paymentMonth] = payment.date.split('-').map(Number)
+
+		if (!monthsByQuarter[quarter].includes(paymentMonth)) return acc
+
+		const ep = military.find((ep) => ep.date === payment.date.slice(0, 7))
 
 		if (!ep) return acc
 
 		return acc + payment.sum * ep.sum
 	}, 0)
 
-	console.log('quarterEp: ', quarterEp)
-
 	return {
 		quarterSum,
 		quarterEsv,
 		quarterEp: Math.ceil(quarterEp),
+		quarterMilitary: Math.ceil(quarterMilitary),
 	}
 }

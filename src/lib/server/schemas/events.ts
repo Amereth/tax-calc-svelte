@@ -3,7 +3,9 @@ import { users } from './users'
 
 export const events = sqliteTable('events', {
 	id: integer('id').primaryKey(),
-	type: text('type').notNull().$type<'declaration' | 'ep' | 'esv'>(),
+	type: text('type')
+		.notNull()
+		.$type<'declaration' | 'ep' | 'esv' | 'military'>(),
 	sum: integer('sum'),
 	year: integer('year').notNull(),
 	quarter: integer('quarter').notNull().$type<1 | 2 | 3 | 4>(),
@@ -16,7 +18,7 @@ export const events = sqliteTable('events', {
 
 export type Event = {
 	id: number
-	type: 'declaration' | 'ep' | 'esv'
+	type: 'declaration' | 'ep' | 'esv' | 'military'
 	sum: number | null
 	year: string
 	quarter: 1 | 2 | 3 | 4
