@@ -20,7 +20,7 @@
 
 	const { form: formData, enhance } = form
 
-	let selectedTaxName = $state('')
+	let selectedTaxName = $state(data.taxes[0].name)
 
 	const selectedTaxes = $derived(
 		data.taxes.filter((tax) => tax.name === selectedTaxName),
@@ -113,7 +113,7 @@
 							type="number"
 							{...props}
 							bind:value={$formData.sum}
-							class="input"
+							step="0.01"
 						/>
 					{/snippet}
 				</Control>
