@@ -48,8 +48,8 @@
 				[undefined, undefined, undefined, undefined],
 			)}
 
-		<div class="border-surface flex flex-col gap-8 rounded-xl border p-4">
-			<div class="mr-4 text-right">{quarter} квартал {year}</div>
+		<div class="flex flex-col gap-6">
+			<div class="mr-4 text-right text-xl">{quarter} квартал {year}</div>
 
 			<EventForm
 				id={declarationEvent?.id}
